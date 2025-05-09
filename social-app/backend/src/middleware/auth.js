@@ -1,9 +1,5 @@
 const { verify } = require('jsonwebtoken');
 
-app.get('/profile', verifyJWT, handler);
-
-
-
 function verifyJWT(req, res, next) {
     const authHeader = req.headers['authorization'];
     const JWT_SECRET = process.env.JWT_SECRET;
@@ -25,3 +21,4 @@ function verifyJWT(req, res, next) {
         return res.status(403).json({ error: 'Insufficient Permissions' });
     }
 }
+module.exports = verifyJWT;
