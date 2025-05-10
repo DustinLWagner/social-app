@@ -31,11 +31,9 @@ document.getElementById('loginForm').addEventListener('submit',
                     throw new Error('No Token Found')
                 }
                 localStorage.setItem('authToken', data.token);
-
-
-
-
-
+                setTimeout(() => {
+                    window.location.href = 'feed.html';
+                }, 1000);
 
             })
             .catch(error => {
