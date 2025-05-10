@@ -13,13 +13,8 @@ const register = async (req, res) => {
         //any or all fields missing return error bad request 
         return res.status(400).json({ error: 'All fields are required' });
     }
-
-    console.log('Register route was hit');
-
     //hash the password, await bcrypt inside async
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log('Hashed Password:', hashedPassword);
-
     try {
         const newUser = await prisma.user.create({ //on success create user with supplied fields
             data: {
@@ -64,11 +59,13 @@ const login = async (req, res) => {
 
         const foundUser = await prisma.user.findUnique({ where: { email } });
 
+
         if (!foundUser) {
             return res.status(401).json({ error: 'User not found' })
         }
         // 3 compare password
         const matchPassword = await bcrypt.compare(password, foundUser.password);
+        console.log("Password match?", matchPassword);
         if (!matchPassword) {
             return res.status(401).json({ error: 'Password Incorrect' })
         }
