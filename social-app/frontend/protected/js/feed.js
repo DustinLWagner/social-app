@@ -1,1 +1,5 @@
-// import and call checkAuth()
+// import 
+import { checkAuth } from "./checkAuth.js";
+//and call checkAuth()
+checkAuth();
+
