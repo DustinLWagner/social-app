@@ -43,3 +43,26 @@ document.getElementById('loginForm').addEventListener('submit',
             })
     });
 
+//Auth Session Check (Centralized Utility)
+
+function checkAuth() {
+    const authToken = localStorage.getItem('authToken');
+    //check for token, no token redirect
+    if (!authToken) {
+        window.location.href = 'index.html';
+        return;
+        //if token fetch auth header
+    } else {
+        fetch('/api/auth/profile', {
+            method: 'GET',
+            headers: { Authorization: 'Bearer ' + authToken }
+        }
+        )
+            .then(async response => {
+                if (!response.ok) { //invalid, returns to index
+                    window.location.href = 'index.html'
+                }
+                else { window.location.href = 'feed.html' } //valid, user stays
+            })
+    }
+}
