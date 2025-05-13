@@ -16,8 +16,13 @@ const authRoutes = require('./routes/auth');
 const verifyJWT = require('./middleware/auth')
 
 //restrict cors to my frontend addy only
-app.use(cors({ origin: 'http://127.0.0.1:5500' }));
+const corsOptions = {
+    origin: 'http://127.0.0.1:5500',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
 
+app.use(cors(corsOptions));
 
 //parse incoming request from the client with JSON, attach the parsed data to req.body
 app.use(express.json());
@@ -30,7 +35,7 @@ function handler(req, res) {
     res.status(200).json({ message: 'Access Granted', userId: req.userId })
 };
 
-app.get('/profile', verifyJWT, handler);
+app.get('/api/auth/profile', verifyJWT, handler);
 
 
 const PORT = process.env.PORT || 3000;

@@ -1,4 +1,4 @@
-console.log('script loaded')
+const FEED_PAGE = 'feed.html';
 
 //grab login form
 document.getElementById('loginForm').addEventListener('submit',
@@ -26,14 +26,16 @@ document.getElementById('loginForm').addEventListener('submit',
                 return response.json()
             })
             .then(data => {
+                const token = data.token?.trim();
                 // have parsed data here
-                if (!data.token) {
+                if (!token) {
                     throw new Error('No Token Found')
                 }
-                localStorage.setItem('authToken', data.token);
-                setTimeout(() => {
-                    window.location.href = 'feed.html';
-                }, 1000);
+                localStorage.setItem('authToken', token);
+                console.log("Redirecting to feed.html...");
+                window.location.href = FEED_PAGE;
+
+                return;
 
             })
             .catch(error => {
@@ -42,4 +44,3 @@ document.getElementById('loginForm').addEventListener('submit',
                 document.getElementById('loginError').textContent = error.message;
             })
     });
-
