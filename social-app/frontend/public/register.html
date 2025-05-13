@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Create Account</title>
+    <link rel="stylesheet" href="../css/indexPublic.css">
+    <script defer src="../js/register.js"></script>
+</head>
+
+<body>
+
+    <main>
+
+        <h1>
+            Create Account
+        </h1>
+        <form id="registerForm">
+
+            <label for="username" class="formLabel">Username:</label>
+            <input id="username" name="username" class="formInput" placeholder="User123" type="text" required /><br />
+
+            <label for="email" class="formLabel">Email:</label>
+            <input id="email" name="email" class="formInput" placeholder="User123@mail.com" type="email"
+                autocomplete="email" required /> <br />
+
+            <label for="password" class="formLabel">Password:</label>
+            <input id="password" name="password" class="formInput" placeholder="Password" type="password"
+                autocomplete="current-password" required />
+
+            <div>
+                <button class="formButton" type="submit"> Register </button>
+            </div>
+        </form>
+
+        <p id="registerError" class="errorMessage" hidden> Invalid Credentials</p>
+
+    </main>
+
+</html>

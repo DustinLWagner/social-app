@@ -1,4 +1,6 @@
 require('dotenv').config();
+const cors = require('cors');
+
 
 
 //import express
@@ -12,6 +14,10 @@ const authRoutes = require('./routes/auth');
 
 //import  verifyJWT
 const verifyJWT = require('./middleware/auth')
+
+//restrict cors to my frontend addy only
+app.use(cors({ origin: 'http://127.0.0.1:5500' }));
+
 
 //parse incoming request from the client with JSON, attach the parsed data to req.body
 app.use(express.json());
