@@ -1,5 +1,3 @@
-console.log('checkAuth.js loaded');
-
 const LOGIN_PAGE = 'index.html';
 const FEED_PAGE = 'feed.html';
 
