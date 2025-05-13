@@ -1,5 +1,6 @@
 // import 
 import { checkAuth } from "./checkAuth.js";
-//and call checkAuth()
+import { logoutUser } from "../../public/js/logout.js";
+//and call modules
 checkAuth();
 
