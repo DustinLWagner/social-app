@@ -1,0 +1,46 @@
+# EPIC 2: Posts & Feed
+
+This epic focuses on enabling users to create posts, view a feed of posts, and handle basic content display.
+
+---
+
+## 🧱 Backend Goals
+
+- Define a `Post` model using Prisma.
+- Allow users to create posts via authenticated API.
+- Provide a feed API that returns recent posts, sorted by time.
+
+---
+
+## 🖥 Frontend Goals
+
+- Create a simple `feed.html` layout.
+- Fetch and display the latest posts using JavaScript.
+- Allow users to create new posts with optional image/media.
+
+---
+
+## 🔄 Development Process
+
+Each feature will follow a backend-first development cycle:
+1. Design the database schema (Prisma)
+2. Create RESTful endpoints in Express
+3. Build the corresponding UI in Vanilla JavaScript
+
+---
+
+## 📄 Included Stories
+
+### Backend
+- **2.1** – Define `Post` model and DB setup
+- **2.2** – Create Post API (`/api/posts/create`)
+- **2.3** – Get Feed API (`/api/posts/feed`)
+
+### Frontend
+- **2.4** – Feed page layout (`feed.html`)
+- **2.5** – Load posts using API and render
+- **2.6** – Submit post form and append new post
+
+---
+
+This epic prepares the foundation for features like likes, comments, and post sharing in future iterations.
