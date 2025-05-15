@@ -1,13 +1,14 @@
 require('dotenv').config();
 const cors = require('cors');
 
-
+const cookieParser = require('cookie-parser');
 
 //import express
 const express = require('express');
+const app = express(); //(main app object to handle all routing/middleware/etc)
 
-//main app object to handle all routing/middleware/etc
-const app = express();
+const requireAuth = require('./middleware/auth')
+const path = require('path');
 
 //import auth.js router
 const authRoutes = require('./routes/auth');
@@ -23,12 +24,27 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 
 //parse incoming request from the client with JSON, attach the parsed data to req.body
 app.use(express.json());
 
-// for routes from /api/auth use auth.js routes
+// for routes from /api/auth
 app.use('/api/auth', authRoutes);
+
+//for protected (auth required)
+app.use(
+    '/protected',
+    requireAuth, (req, res, next) => {
+        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+        next();
+    }, express.static(path.join(__dirname, '../../frontend/protected')),
+);
+
+//for public (no auth required)
+app.use(
+    express.static(path.join(__dirname, '../../frontend/public'))
+);
 
 //middlewareJWT
 function handler(req, res) {

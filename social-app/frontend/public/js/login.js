@@ -1,4 +1,4 @@
-const FEED_PAGE = 'feed.html';
+const FEED_PAGE = '/protected/feed.html';
 
 //grab login form
 document.getElementById('loginForm').addEventListener('submit',
@@ -27,6 +27,7 @@ document.getElementById('loginForm').addEventListener('submit',
             })
             .then(data => {
                 const token = data.token?.trim();
+                document.cookie = `token=${token}; path=/; max-age=86400`; // 1 day
                 // have parsed data here
                 if (!token) {
                     throw new Error('No Token Found')
