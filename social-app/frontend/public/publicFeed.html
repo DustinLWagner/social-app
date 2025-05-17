@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Public Feed</title>
+    <link rel="stylesheet" href="css/publicFeed.css">
+    <script type="module" src="js/publicFeed.js"></script>
+
+</head>
+
+<body>
+
+    <main>
+        <h1> Welcome to Buds!</h1>
+
+        <section id="loginSection">
+            <form id="loginForm">
+                <div>
+                    <h2>
+                        Browse Public or Login
+                    </h2>
+                </div>
+                <div class="formGroup">
+                    <label for="email" class="formLabel">Email</label>
+                    <input id="email" name="email" class="formInput" placeholder="User123@mail.com" type="email"
+                        autocomplete="email" required />
+                </div>
+
+                <div class="formGroup">
+                    <label for="password" class="formLabel">Password</label>
+                    <input id="password" name="password" class="formInput" placeholder="Password" type="password"
+                        autocomplete="current-password" required />
+                </div>
+                <div>
+                    <button class="formButton" type="submit"> Login </button>
+                    <p id="reg_link"> or Create an account <a href="/register.html">Here</a>. </p>
+                </div>
+            </form>
+
+        </section>
+
+        <section id="feedSection">
+            <h2>Public Posts</h2>
+            <div id="feedContainer">
+                <p id="loadingMsg" hidden>Loading feed...</p>
+                <p id="emptyFeedMsg" hidden>Feed is Empty</p>
+            </div>
+        </section>
+    </main>
+
+
+
+</body>
+
+</html>
