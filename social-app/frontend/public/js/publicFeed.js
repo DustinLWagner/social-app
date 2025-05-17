@@ -5,25 +5,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //GET posts from /api/posts/feed
 async function loadFeed() {
-    const response = await fetch('/api/posts/feed', {
-        method: 'GET',
-    });
-    const posts = await response.json();
 
-    if (!posts.length) {
+    try {
+        const response = await fetch('/api/posts/feed', {
+            method: 'GET',
+        });
+        const posts = await response.json();
 
-        document.getElementById('emptyFeedMsg').hidden = false;
-        return;
+        if (!posts.length) {
+
+            document.getElementById('emptyFeedMsg').hidden = false;
+            return;
+        }
+        //Loop through posts
+        let feedContainer = document.getElementById('feedContainer');
+        for (const post of posts) {
+            //Create the card 
+            let card = createPostCard(post);
+            //append postCard from createPostCard
+            feedContainer.append(card);
+        };
+
+    } catch (error) {
+        document.getElementById('feedFailMsg').hidden = false;
     }
-    //Loop through posts
-    let feedContainer = document.getElementById('feedContainer');
-    for (const post of posts) {
-        //Create the card 
-        let card = createPostCard(post);
-        //append postCard from createPostCard
-        feedContainer.append(card);
-    };
-};
+}
+
 
 ///helper loop function///
 
