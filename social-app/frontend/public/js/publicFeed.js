@@ -1,8 +1,3 @@
-// import 
-
-//and call modules
-
-
 //fetch on page load
 document.addEventListener('DOMContentLoaded', () => {
     loadFeed();
@@ -19,43 +14,58 @@ async function loadFeed() {
 
         document.getElementById('emptyFeedMsg').hidden = false;
         return;
-    } else {
-        //call helper loop function 
     }
+    //Loop through posts
+    let feedContainer = document.getElementById('feedContainer');
+    for (const post of posts) {
+        //Create the card 
+        let card = createPostCard(post);
+        //append postCard from createPostCard
+        feedContainer.append(card);
+    };
 };
 
 ///helper loop function///
 
-        //helper function loops through array, renders each post into DOM
-        function createPostCard(post) {
-            //create div and give postCard class
-            
-            //create h3 for username
-                //set text to post.author.username 
-                    //append to card
+//helper function loops through array, renders each post into DOM
+function createPostCard(post) {
+    //create div
+    let divCard = document.createElement('div');
+    divCard.className = 'postCard';
 
-            //create add post content
-                //<p> post.content</p>
-                    //append
-            //check if post.mediaUrl exists and is not empty
-                //if yes create img element, set src to mediaUrl, give class postImage
-                    //append
-            //create formatted timestamp
-                //small <p> or time element
-                    //format post.createdAt into readable 
-                        //append 
-                        
-            //return back inside loadfeed() append this result to feedContainer
+    //create username h3
+    let username = document.createElement('h3');
+    username.className = 'postcardUsername';
+    username.innerText = post.author.username;
+    divCard.append(username);
 
-            
-        }
+    //create add post content
+    let content = document.createElement('p');
+    content.className = 'cardContent';
+    content.innerText = post.content;
+    divCard.append(content);
 
+    //check if post.mediaUrl exists and is not empty
+    if (post.mediaUrl) {
+        //if yes create img element, set src to mediaUrl, give class postMedia
+        let postMedia = document.createElement('img');
+        postMedia.className = 'postMedia';
+        postMedia.src = post.mediaUrl;
+        divCard.append(postMedia)
+    }
 
-        //inject into the feedContainer
-        document.getElementById('feedContainer')
+    //create formatted timestamp
+    let cardTime = document.createElement('sub')
+    cardTime.className = 'cardTimestamp';
+    //get createdAT
+    let createdAt = post.createdAt;
+    //convert from string to Date object
+    let date = new Date(createdAt);
+    //format date into a readable string
+    let cardPostDate = date.toDateString();
+    cardTime.innerText = cardPostDate;
+    divCard.append(cardTime);
+    //return back inside loadfeed() append this result to feedContainer
+    return divCard;
 
-        //render each post in a card
-        //Usernamer:
-        //Content: 
-        //Media?
-        //Timestamp
+}
