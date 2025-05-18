@@ -23,6 +23,9 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization']
 };
 
+//import post route
+const postRoutes = require('./routes/postRoutes')
+
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
@@ -31,6 +34,9 @@ app.use(express.json());
 
 // for routes from /api/auth
 app.use('/api/auth', authRoutes);
+
+//create post route
+app.use('/api/posts', postRoutes);
 
 //for protected (auth required)
 app.use(
