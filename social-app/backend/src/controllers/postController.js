@@ -7,19 +7,29 @@ async function createPost(req, res) {
     }
     //pulls content and optional mediaUrl and trims
     try {
-        const { content, mediaUrl } = req.body;
+        const { content } = req.body;
+        const media = req.file;
+        const mediaUrl = media ? `/uploads/${media.filename}` : null;
         if (!content || content.trim() === '') {
             console.warn('Failed to create post, No content provided.')
             return res.status(400).json({ error: 'Content Required' });
         }
         const trimmedContent = content.trim();
-        const trimmedMediaUrl = mediaUrl?.trim() || null;
+        const trimmedMediaUrl = typeof mediaUrl === 'string' ? mediaUrl.trim() : null;
+
         //saves to DB with authorId
         const newPost = await prisma.post.create({
             data: {
                 content: trimmedContent,
                 mediaUrl: trimmedMediaUrl,
-                authorId: req.userId
+                authorId: req.userId,
+            },
+            include: {
+                author: {
+                    select: {
+                        username: true,
+                    }
+                }
             }
         });
         //returns post object

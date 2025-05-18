@@ -17,8 +17,20 @@
         <p id="logoutMessage"></p>
         <div> <button id="logoutButton">Logout</button></div>
 
+        <section id="createPost">
+            <div>
+                <form id="createPostForm">
+                    <textarea name="content" id="postContent" required></textarea>
+                    <input type="file" id="postMedia" accept="image/*" /> <br>
+                    <button id="submitPost" type="submit">Post it!</button>
+                </form>
+                <p id="postFailMsg" hidden>Post Failed. Try again.</p>
+            </div>
+        </section>
+
         <div id="feedContainer">
-            <p id="empyFeedMsg">Feed is Empty</p>
+            <p id="emptyFeedMsg">Feed is Empty</p>
+            <p id="feedFailMsg" hidden></p>
         </div>
 
     </main>
