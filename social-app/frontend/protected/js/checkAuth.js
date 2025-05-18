@@ -1,5 +1,5 @@
-const LOGIN_PAGE = 'index.html';
-const FEED_PAGE = 'feed.html';
+const LOGIN_PAGE = '/index.html';
+const FEED_PAGE = '/protected/feed.html';
 
 //async Auth Session Check (Centralized Utility)
 async function checkAuth() {

@@ -1,4 +1,4 @@
-const LOGIN_PAGE = 'index.html';
+const LOGIN_PAGE = '/index.html';
 
 function logoutUser() {
     const logoutMessage = document.getElementById('logoutMessage');
@@ -7,6 +7,7 @@ function logoutUser() {
         logoutMessage.textContent = 'Logging out...';
         //remove JWT
         localStorage.removeItem('authToken');
+        document.cookie = `token=; path=/; max-age=0`
         //pause for 1.5 seconds before redirect
         setTimeout(() => {
             window.location.href = LOGIN_PAGE;
