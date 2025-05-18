@@ -9,7 +9,7 @@ const app = express(); //(main app object to handle all routing/middleware/etc)
 
 const requireAuth = require('./middleware/auth')
 const path = require('path');
-
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 //import auth.js router
 const authRoutes = require('./routes/auth');
 
