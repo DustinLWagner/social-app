@@ -1,5 +1,5 @@
 const { verify } = require('jsonwebtoken');
-const LOGIN_PAGE = '/index.html';
+const LOGIN_PAGE = '/pages/index.html';
 
 function verifyJWT(req, res, next) {
     const authHeader = req.headers['authorization'];

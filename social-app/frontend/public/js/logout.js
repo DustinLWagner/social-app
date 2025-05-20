@@ -1,4 +1,4 @@
-const LOGIN_PAGE = '/index.html';
+const LOGIN_PAGE = '/pages/index.html';
 
 function logoutUser() {
     const logoutMessage = document.getElementById('logoutMessage');

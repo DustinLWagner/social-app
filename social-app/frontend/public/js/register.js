@@ -30,7 +30,7 @@ document.getElementById('registerForm').addEventListener('submit', function regi
                 throw new Error('No confirmation from server')
             }
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = '/pages/index.html';
             }, 1000);
         })
         .catch(error => {
