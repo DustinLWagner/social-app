@@ -14,7 +14,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 const authRoutes = require('./routes/auth');
 
 //import  verifyJWT
-const verifyJWT = require('./middleware/auth')
+const verifyJWT = require('./middleware/auth');
 
 //restrict cors to my frontend addy only
 const corsOptions = {
@@ -24,7 +24,10 @@ const corsOptions = {
 };
 
 //import post route
-const postRoutes = require('./routes/postRoutes')
+const postRoutes = require('./routes/postRoutes');
+
+//followRoutes
+const followRoutes = require('./routes/followRoutes');
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
@@ -46,11 +49,13 @@ app.use(
         next();
     }, express.static(path.join(__dirname, '../../frontend/protected')),
 );
-
 //for public (no auth required)
 app.use(
     express.static(path.join(__dirname, '../../frontend/public'))
 );
+//follow routes
+app.use('/api', followRoutes);
+
 
 //middlewareJWT
 function handler(req, res) {
