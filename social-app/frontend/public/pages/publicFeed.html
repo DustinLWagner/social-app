@@ -4,24 +4,20 @@
 <head>
     <meta charset="UTF-8" />
     <title>Public Feed</title>
-    <link rel="stylesheet" href="/css/publicFeed.css">
+    <link rel="stylesheet" href="/css/index.css">
     <script type="module" src="/js/publicFeed.js"></script>
     <script type="module" src="/js/login.js"></script>
 
 </head>
 
-<body>
-
-    <main>
-        <h1> Welcome to Buds!</h1>
+<body class="withSidebar">
+    <div id="sidebar">
+        <h1>Welcome to Buds!</h1>
 
         <section id="loginSection">
             <form id="loginForm">
-                <div>
-                    <h2>
-                        Browse Public or Login
-                    </h2>
-                </div>
+                <h2>Browse Public or Login</h2>
+
                 <div class="formGroup">
                     <label for="email" class="formLabel">Email</label>
                     <input id="email" name="email" class="formInput" placeholder="User123@mail.com" type="email"
@@ -33,26 +29,24 @@
                     <input id="password" name="password" class="formInput" placeholder="Password" type="password"
                         autocomplete="current-password" required />
                 </div>
+
                 <div>
-                    <button class="formButton" type="submit"> Login </button>
-                    <p id="reg_link"> or Create an account <a href="register.html">Here</a>. </p>
+                    <button class="formButton" type="submit">Login</button>
+                    <p id="reg_link"><a href="register.html">Create an account</a>.</p>
                 </div>
             </form>
-
         </section>
+    </div>
 
-        <section id="feedSection">
-            <h2>Public Posts</h2>
-            <div id="feedContainer">
-                <p id="loadingMsg" hidden>Loading feed...</p>
-                <p id="emptyFeedMsg" hidden>Feed is Empty</p>
-                <p id="feedFailMsg" hidden>Failure to load feed</p>
-            </div>
-        </section>
+    <main id="feedSection">
+        <h2>Public Posts</h2>
+        <div id="feedContainer">
+            <p id="loadingMsg" hidden>Loading feed...</p>
+            <p id="emptyFeedMsg" hidden>Feed is Empty</p>
+            <p id="feedFailMsg" hidden>Failure to load feed</p>
+        </div>
     </main>
-
-
-
 </body>
+
 
 </html>

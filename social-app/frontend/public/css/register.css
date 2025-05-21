@@ -1,0 +1,93 @@
+/* Register Page — Earthy Dark Mode */
+
+body {
+    background-color: #1c1c1b;
+    color: #dddcd7;
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+main {
+    background-color: #2a2a26;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #F0EAD6;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formLabel {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #dddcd7;
+}
+
+.formInput {
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    border: 1px solid #3d3d3a;
+    border-radius: 6px;
+    background-color: #1c1c1b;
+    color: #dddcd7;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.formInput:focus {
+    border-color: #77B28C;
+    outline: none;
+}
+
+.formButton {
+    padding: 0.5rem;
+    color: white;
+    background-color: #A67B5B;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formButton:hover {
+    background-color: #8C5E3C;
+}
+
+p#reg_link {
+    margin-top: 1rem;
+    text-align: center;
+    color: #dddcd7;
+}
+
+p#reg_link a {
+    color: #77B28C;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p#reg_link a:hover {
+    text-decoration: underline;
+}
+
+.errorMessage {
+    color: #d96b58;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+}
