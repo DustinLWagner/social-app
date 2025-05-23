@@ -4,15 +4,18 @@ async function followController(req, res) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
     try {
+        //compare to be followed against the User Requesting 
         if (req.userId === parseInt(req.params.id)) {
             return res.status(400).json({ error: "You can't follow yourself!" })
         }
-        const userToFollow = await prisma.user.findUnique({
+        //check if user exists
+        const userExists = await prisma.user.findUnique({
             where: { id: parseInt(req.params.id) }
         });
-        if (!userToFollow) {
+        if (!userExists) {
             return res.status(404).json({ error: 'User does not exist!' })
         };
+        //check if already following user
         const existingFollow = await prisma.follower.findUnique({
             where: {
                 followerId_followeeId: {
@@ -24,6 +27,7 @@ async function followController(req, res) {
         if (existingFollow) {
             return res.status(400).json({ error: 'You already follow this user' });
         }
+        //create the follow relation
         await prisma.follower.create({
             data: {
                 followerId: req.userId,

@@ -4,12 +4,14 @@ async function unFollowController(req, res) {
         return res.status(401).json({ error: 'Unauthorized' });
     }
     try {
-        const userToUnfollow = await prisma.user.findUnique({
+        //check if user exists
+        const userExists = await prisma.user.findUnique({
             where: { id: parseInt(req.params.id) }
         });
-        if (!userToUnfollow) {
+        if (!userExists) {
             return res.status(404).json({ error: 'User does not exist!' })
         };
+        //check if following user
         const existingFollow = await prisma.follower.findUnique({
             where: {
                 followerId_followeeId: {
@@ -21,6 +23,7 @@ async function unFollowController(req, res) {
         if (!existingFollow) {
             return res.status(400).json({ error: 'You do not follow this user' });
         }
+        //remove following relation
         await prisma.follower.delete({
             where: {
                 followerId_followeeId: {
