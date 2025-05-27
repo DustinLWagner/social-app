@@ -29,6 +29,9 @@ const postRoutes = require('./routes/postRoutes');
 //followRoutes
 const followRoutes = require('./routes/followRoutes');
 
+//userRoutes
+const userRoutes = require('./routes/userRoutes');
+
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
@@ -56,6 +59,8 @@ app.use(
 //follow routes
 app.use('/api', followRoutes);
 
+//userRoutes
+app.use('/api/users', userRoutes);
 
 //middlewareJWT
 function handler(req, res) {
