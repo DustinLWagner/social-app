@@ -7,9 +7,15 @@ function createPostCard(post) {
     divCard.className = 'postCard';
 
     //create username h3
+    // let username = document.createElement('h3');
+    // username.className = 'postcardUsername';
+    // username.innerText = post.author.username;
+    // divCard.append(username);
+
+    //username links to profile page
     let username = document.createElement('h3');
     username.className = 'postcardUsername';
-    username.innerText = post.author.username;
+    username.innerHTML = `<a href="/pages/profile.html?userId=${post.author.id}"> ${post.author.username} </a>`;
     divCard.append(username);
 
     //create add post content

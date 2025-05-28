@@ -33,3 +33,7 @@ postContentInput.addEventListener('focus', hidePostFailMsg);
 
 postMediaInput.addEventListener('change', hidePostFailMsg);
 postMediaInput.addEventListener('focus', hidePostFailMsg);
+
+setTimeout(() => {
+    document.body.style.display = 'flex';
+}, 100);

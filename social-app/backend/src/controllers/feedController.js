@@ -11,7 +11,10 @@ async function getFeed(req, res) {
         ],
         include: {
             author: {// include username of author for each post
-                select: { username: true }
+                select: {
+                    username: true,
+                    id: true
+                }
             },
         },
 

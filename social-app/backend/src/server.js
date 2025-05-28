@@ -72,6 +72,9 @@ app.get('/api/auth/profile', verifyJWT, handler);
 
 const PORT = process.env.PORT || 3000;
 console.log('Starting server...');
+
+
+//log port
 app.listen(PORT, () => {
     console.log(`Server running on Port ${PORT}`);
 });

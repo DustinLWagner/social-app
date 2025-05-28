@@ -25,7 +25,8 @@ main {
 }
 
 h1,
-h2 {
+h2,
+h3 {
     color: #08605F;
     ;
     text-align: center;
@@ -90,7 +91,7 @@ p {
 }
 
 a {
-    color: #8ecae6;
+    color: #08605F;
     text-decoration: none;
 }
 
@@ -153,7 +154,7 @@ a:hover {
 
 /* Layout override for publicFeed.html */
 body.withSidebar {
-    display: flex;
+    display: none;
     justify-content: flex-start;
     align-items: stretch;
     padding: 0;
@@ -165,7 +166,7 @@ body.withSidebar {
     width: 300px;
     background-color: #2a2b32;
     padding: 2rem 1.5rem;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: flex-start;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);

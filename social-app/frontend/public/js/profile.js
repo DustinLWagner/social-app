@@ -1,17 +1,32 @@
 // import 
-//import { checkAuth } from "/protected/js/checkAuth.js";
 import { createPostCard } from "/modules/createPostCard.js";
 import { loadFeed } from "/modules/loadFeed.js";
+import { checkIfLoggedIn } from "../modules/checkIfLoggedIn.js";
 
 const feedContainer = document.getElementById('feedContainer');
 const emptyFeedMsg = document.getElementById('emptyFeedMsg');
 const followFailMsg = document.getElementById('followFailMsg');
 const createPostForm = document.getElementById('createPostForm');
 const errorMsg = document.getElementById('errorMsg');
+document.getElementById('loginBtn').hidden = true;
+document.getElementById('homeBtn').hidden = true;
+document.getElementById('followBtn').hidden = true;
 document.getElementById('errorMsg').hidden = true;
 
+
+//nav buttons
+document.getElementById('pubFeedBtn').addEventListener('click', (e) => {
+    window.location.href = "publicFeed.html";
+});
+document.getElementById('loginBtn').addEventListener('click', (e) => {
+    window.location.href = "index.html";
+});
+document.getElementById('homeBtn').addEventListener('click', (e) => {
+    window.location.href = "../../protected/feed.html";
+});
+
 //call modules
-// checkAuth();
+checkIfLoggedIn();
 
 // get user from query
 const params = new URLSearchParams(window.location.search);

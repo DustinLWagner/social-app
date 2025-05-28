@@ -9,7 +9,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #e0e0e0;
     min-height: 100vh;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     padding: 1rem;
@@ -32,12 +32,17 @@ h2 {
     margin-bottom: 1rem;
 }
 
-#logoutButtonDiv {
-    margin-left: 63%;
+#navBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-around;
 }
 
-
-#followBtn {
+#followBtn,
+#pubFeedBtn,
+#homeBtn,
+#loginBtn {
     width: 80px;
     padding: 0.6rem;
     color: #ffffff;
@@ -50,7 +55,10 @@ h2 {
     margin: 1rem;
 }
 
-#followBtn:hover {
+#homeBtn:hover,
+#followBtn:hover,
+#pubFeedBtn:hover,
+#loginBtn:hover {
     background-color: #023047;
 }
 
@@ -62,7 +70,7 @@ p {
 }
 
 a {
-    color: #8ecae6;
+    color: #08605F;
     text-decoration: none;
 }
 
@@ -70,8 +78,9 @@ a:hover {
     text-decoration: underline;
 }
 
-.errorMessage,
-.errorMsg {
+.errorMsg,
+.emptyFeedMsg,
+.feedFailMsg {
     margin-top: 1rem;
     text-align: center;
     color: #ef476f;
