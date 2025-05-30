@@ -63,6 +63,7 @@ textarea:focus {
 }
 
 .formButton,
+#homeBtn,
 #submitPost,
 #logoutButton {
     width: 100%;
@@ -78,6 +79,7 @@ textarea:focus {
 }
 
 .formButton:hover,
+#homeBtn:hover,
 #submitPost:hover,
 #logoutButton:hover {
     background-color: #023047;

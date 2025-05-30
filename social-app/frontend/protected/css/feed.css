@@ -66,6 +66,7 @@ textarea:focus {
 }
 
 .formButton,
+#pubFeedBtn,
 #submitPost,
 #logoutButton {
     width: 230px;
@@ -81,12 +82,14 @@ textarea:focus {
     margin-left: 33%;
 }
 
-#logoutButton {
+#logoutButton,
+#pubFeedBtn {
     margin: 1rem 0;
     background-color: #08605F;
 }
 
 .formButton:hover,
+#pubFeedBtn:hover,
 #submitPost:hover,
 #logoutButton:hover {
     background-color: #023047;

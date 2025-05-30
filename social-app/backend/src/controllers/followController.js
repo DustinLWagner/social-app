@@ -6,7 +6,7 @@ async function followController(req, res) {
     try {
         //compare to be followed against the User Requesting 
         if (req.userId === parseInt(req.params.id)) {
-            return res.status(400).json({ error: "You can't follow yourself!" })
+            return res.status(433).json({ error: "You can't follow yourself!" })
         }
         //check if user exists
         const userExists = await prisma.user.findUnique({

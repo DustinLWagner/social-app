@@ -12,13 +12,23 @@ const postFailMsg = document.getElementById('postFailMsg');
 const createPostForm = document.getElementById('createPostForm');
 const postContentInput = document.getElementById('postContent');
 const postMediaInput = document.getElementById('postMedia');
+const pubFeedBtn = document.getElementById('pubFeedBtn').addEventListener(
+    'click', () => window.location.href = "/pages/publicFeed.html")
 
-//call modules
+//authentication check
 checkAuth();
 //fetch on page load
 document.addEventListener('DOMContentLoaded', () => {
     loadFeed();
 });
+
+
+//welcome message saying Hello ${USER}
+
+
+document.getElementById('welcomeMsg').innerHTML = 'Hello User'
+
+
 //create post form//
 createPostForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -34,6 +44,7 @@ postContentInput.addEventListener('focus', hidePostFailMsg);
 postMediaInput.addEventListener('change', hidePostFailMsg);
 postMediaInput.addEventListener('focus', hidePostFailMsg);
 
+//show pages contents after page load to prevent flash
 setTimeout(() => {
     document.body.style.display = 'flex';
 }, 100);
