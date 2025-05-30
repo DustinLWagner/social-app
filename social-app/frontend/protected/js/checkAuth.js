@@ -1,4 +1,4 @@
-const LOGIN_PAGE = '/index.html';
+const LOGIN_PAGE = '/pages/index.html';
 const FEED_PAGE = '/protected/feed.html';
 
 //async Auth Session Check (Centralized Utility)
