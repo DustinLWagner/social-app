@@ -14,7 +14,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 const authRoutes = require('./routes/auth');
 
 //import  verifyJWT
-const verifyJWT = require('./middleware/auth')
+const verifyJWT = require('./middleware/auth');
 
 //restrict cors to my frontend addy only
 const corsOptions = {
@@ -24,7 +24,13 @@ const corsOptions = {
 };
 
 //import post route
-const postRoutes = require('./routes/postRoutes')
+const postRoutes = require('./routes/postRoutes');
+
+//followRoutes
+const followRoutes = require('./routes/followRoutes');
+
+//userRoutes
+const userRoutes = require('./routes/userRoutes');
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
@@ -46,11 +52,15 @@ app.use(
         next();
     }, express.static(path.join(__dirname, '../../frontend/protected')),
 );
-
 //for public (no auth required)
 app.use(
     express.static(path.join(__dirname, '../../frontend/public'))
 );
+//follow routes
+app.use('/api', followRoutes);
+
+//userRoutes
+app.use('/api/users', userRoutes);
 
 //middlewareJWT
 function handler(req, res) {
@@ -62,6 +72,9 @@ app.get('/api/auth/profile', verifyJWT, handler);
 
 const PORT = process.env.PORT || 3000;
 console.log('Starting server...');
+
+
+//log port
 app.listen(PORT, () => {
     console.log(`Server running on Port ${PORT}`);
 });

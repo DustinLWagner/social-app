@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Social Login</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <script type="module" src="/js/login.js"></script>
+
+<body>
+
+    <main>
+
+        <form id="loginForm">
+            <div>
+                <h2 id="title">
+                    Social App Login
+                </h2>
+            </div>
+            <div class="formGroup">
+                <label for="email" class="formLabel">Email</label>
+                <input id="email" name="email" class="formInput" placeholder="User123@mail.com" type="email"
+                    autocomplete="email" required />
+            </div>
+
+            <div class="formGroup">
+                <label for="password" class="formLabel">Password</label>
+                <input id="password" name="password" class="formInput" placeholder="Password" type="password"
+                    autocomplete="current-password" required />
+            </div>
+            <div>
+                <button class="formButton" type="submit"> Login </button>
+                <p><a href="publicFeed.html" id="pubLink">Browse public</a> -or- <a href="register.html" id="regLink">
+                        Create an account</a>. </p>
+            </div>
+        </form>
+
+        <p id="loginError" class="errorMessage" hidden> Invalid Credentials</p>
+
+    </main>
+
+
+
+</body>
+
+</html>
