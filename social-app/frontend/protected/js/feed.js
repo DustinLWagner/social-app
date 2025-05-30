@@ -24,9 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //welcome message saying Hello ${USER}
-
-
-document.getElementById('welcomeMsg').innerHTML = `'Hello User'`
+const user = await checkAuth();
+document.getElementById('welcomeMsg').innerHTML = `Hello ${user.username}`
 
 
 //create post form//

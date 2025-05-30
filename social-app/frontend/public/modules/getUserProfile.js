@@ -7,7 +7,7 @@ async function getUserProfile(viewedUserId) {
         //build profile information div with response data
         const profileInfo = document.getElementById('profileInfo');
         profileInfo.innerHTML = `
-            <h2> ${user.username} </h2>
+            <h1> ${user.username} </h1>
             <p> Followers: ${user.followers} </p>
             <p>Following: ${user.following} </p>
         `;
@@ -27,7 +27,7 @@ async function followStatus(loggedInUserId, viewedUserId) {
 
         const followers = await res.json();//make data usable
         //check all followers for loggedInUser's ID, checking if already following
-        return followers.some(user => user.id === loggedInUserId);
+        return followers.some(user => user.id.toString() === loggedInUserId);
 
     } catch (error) {
         console.error('Failed to check follow status', error);

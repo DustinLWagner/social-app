@@ -10,6 +10,7 @@ const feedContainer = document.getElementById('feedContainer');
 const emptyFeedMsg = document.getElementById('emptyFeedMsg');
 const createPostForm = document.getElementById('createPostForm');
 const errorMsg = document.getElementById('errorMsg');
+const statusMsg = document.getElementById('statusMsg');
 //nav buttons
 const pubFeedBtn = document.getElementById('pubFeedBtn');
 const loginBtn = document.getElementById('loginBtn');
@@ -40,36 +41,62 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadFeed(viewedUserId);
 
     //get logged in userId
-    const loggedInUser = await checkIfLoggedIn();
-    if (!loggedInUser) {
+    const loggedInUserId = (await checkIfLoggedIn())?.id.toString() || null;
+
+    if (!loggedInUserId) {
         errorMsg.hidden = false;
         errorMsg.innerText = 'Not logged in.'
         return;
     }
     //hide follow button on own profile
-    if (viewedUserId === loggedInUser.userId.toString()) {
+    if (viewedUserId === loggedInUserId) {
         followBtn.hidden = true;
         return;
     };
 
-
     //check if already following
-    let isFollowing = await followStatus(loggedInUser.id, viewedUserId);
+    let isFollowing = await followStatus(loggedInUserId, viewedUserId);
     //set follow button text per followStatus
-    followBtn.innerText = isFollowing ? 'Follow' : 'Unfollow';
+    followBtn.innerText = isFollowing ? 'Unfollow' : 'Follow';
     followBtn.hidden = false;
 
-    //set the button click behavior
+    //Follow button click behavior
     followBtn.onclick = async () => {
-        const actionUrl = isFollowing ? `/api/users/${viewedUserId}/follow` : `/api/users/${viewedUserId}/unfollow`;
+
+        let isFollowing = followBtn.innerText === 'Unfollow';
+        const origText = isFollowing ? 'Unfollow' : 'Follow';
+        const loadingText = isFollowing ? 'Unfollowing...' : 'Following...';
+        //disable button and show loading status
+        followBtn.disabled = true;
+        //show loadingText after 500ms
+        let loadTimeout = setTimeout(() => {
+            followBtn.innerText = loadingText;
+        }, 500);
+
+        const actionUrl = isFollowing ? `/api/users/${viewedUserId}/unfollow` : `/api/users/${viewedUserId}/follow`;
         // POST API call w/ followModule
         const success = await followModule(viewedUserId, actionUrl);
+        //clear timeout
+        clearTimeout(loadTimeout);
+
         if (success) {
             //on success Flip true / false
             isFollowing = !isFollowing;
             //update button accordingly
-            followBtn.innerText = isFollowing ? 'Follow' : 'Unfollow';
+            followBtn.innerText = isFollowing ? 'Unfollow' : 'Follow';
+
+            //display Success in statusMsg
+            statusMsg.innerText = isFollowing ? `You are now following` : 'You have unfollowed'
+        } else {
+            //on failure reset button to previous state
+            followBtn.innerText = isFollowing ? 'Unfollow' : 'Follow';
+            statusMsg.innerText = 'Sorry! Something went wrong. Please try again!'
         }
+        followBtn.disabled = false;
+        setTimeout(() => {
+            statusMsg.innerText = '';
+
+        }, 3000);
     };
 
     console.log('Initial button text set to:', followBtn.innerText);
