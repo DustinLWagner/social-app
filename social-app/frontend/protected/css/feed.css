@@ -10,9 +10,39 @@ body {
     color: #e0e0e0;
     min-height: 100vh;
     display: none;
-    justify-content: center;
+}
+
+body.withSidebar {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+#sidebarProfile {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    width: 300px;
+    background-color: #2a2b32;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+/* Feed Main */
+#feedMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-y: auto;
 }
 
 main {
@@ -21,17 +51,16 @@ main {
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     width: 100%;
-    max-width: 800px;
 }
 
 h1,
 h2 {
     color: #08605F;
-    ;
     text-align: center;
     margin-bottom: 1rem;
 }
 
+/* Forms */
 .formGroup {
     margin-bottom: 1rem;
 }
@@ -61,53 +90,46 @@ textarea:focus {
     outline: none;
 }
 
-#logoutButtonDiv {
-    margin-left: 33%;
-}
-
+/* Buttons */
 .formButton,
 #pubFeedBtn,
 #submitPost,
 #logoutButton {
     width: 230px;
     padding: 0.6rem;
-    color: #ffffff;
+    margin-top: 0.5rem;
+    margin-left: 4%;
+    color: #fff;
     background-color: #08605F;
     font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 0.5rem;
-    margin-left: 33%;
-}
-
-#logoutButton,
-#pubFeedBtn {
-    margin: 1rem 0;
-    background-color: #08605F;
 }
 
 .formButton:hover,
 #pubFeedBtn:hover,
 #submitPost:hover,
-#logoutButton:hover {
+#logoutButton:hover,
+#postMedia:hover {
     background-color: #023047;
 }
 
-input#file-upload-button {
+.customFileUpload {
     width: 80px;
-    padding: 0.6rem;
-    color: #ffffff;
+    padding: 0.2rem;
+    margin: 1rem;
+    color: #fff;
     background-color: #08605F;
-    font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-size: small;
     transition: background-color 0.3s ease;
-    margin: 1rem;
 }
 
+/* Text and Links */
 p {
     margin-top: 1rem;
     font-size: 0.9rem;
@@ -132,6 +154,7 @@ a:hover {
     font-weight: bold;
 }
 
+/* Feed */
 #feedContainer {
     margin-top: 2rem;
     display: flex;
@@ -167,16 +190,27 @@ a:hover {
 }
 
 #createPost textarea {
-    display: flex;
-    justify-self: center;
     min-height: 80px;
     max-width: 300px;
     resize: vertical;
     margin-top: 0.5rem;
 }
 
-#postMedia {
-    display: flex;
-    justify-self: center;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body.withSidebar {
+        flex-direction: column;
+    }
 
+    #sidebarProfile {
+        width: 100%;
+        padding: 1.5rem;
+        box-shadow: none;
+        border-bottom: 1px solid #444;
+    }
+
+    #feedMain {
+        max-width: 100%;
+        padding: 1rem;
+    }
 }

@@ -11,7 +11,7 @@ const feedFailMsg = document.getElementById('feedFailMsg');
 const postFailMsg = document.getElementById('postFailMsg');
 const createPostForm = document.getElementById('createPostForm');
 const postContentInput = document.getElementById('postContent');
-const postMediaInput = document.getElementById('postMedia');
+const postMediaInput = document.getElementById('fileInput');
 const pubFeedBtn = document.getElementById('pubFeedBtn').addEventListener(
     'click', () => window.location.href = "/pages/publicFeed.html")
 
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //welcome message saying Hello ${USER}
 
 
-document.getElementById('welcomeMsg').innerHTML = 'Hello User'
+document.getElementById('welcomeMsg').innerHTML = `'Hello User'`
 
 
 //create post form//

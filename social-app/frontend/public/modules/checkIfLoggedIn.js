@@ -12,6 +12,7 @@ async function checkIfLoggedIn() {
         if (!authToken) {
             if (loginBtn) loginBtn.hidden = false;
             if (followBtn) followBtn.hidden = true;
+            if (homeBtn) homeBtn.hidden = true;
             if (sidebar) sidebar.style.setProperty('display', 'flex');//display sidebar if not logged in
             document.body.style.display = 'flex'; //display page contents last to prevent flash
             return null;

@@ -9,28 +9,39 @@
 
 </head>
 
-<body>
+<body id="withSidebar">
 
-    <main>
+
+    <div id="sidebarProfile">
         <h1 id="welcomeMsg"></h1>
         <p id="sessionCheck"></p>
         <p id="logoutMessage"></p>
         <p id="emptyFeedMsg" hidden>Feed is Empty</p>
         <p id="feedFailMsg" hidden>Failure to load feed</p>
-        <div id="logoutButtonDiv"> <button id="pubFeedBtn">Public</button> <button id="logoutButton">Logout</button>
-        </div>
 
+        <div id="buttonsDiv">
+            <button id="pubFeedBtn">Public</button>
+            <button id="logoutButton">Logout</button>
+        </div>
         <section id="createPost">
             <div>
                 <form id="createPostForm">
                     <textarea name="content" id="postContent" required></textarea>
-                    <input type="file" id="postMedia" accept="image/*" /> <br>
+
+                    <label for="fileInput" class="customFileUpload">Choose file</label>
+                    <input type="file" id="fileInput" hidden />
+
+                    <br>
                     <button id="submitPost" type="submit">Post it!</button>
                 </form>
                 <p id="postFailMsg" hidden>Post Failed. Try again.</p>
             </div>
         </section>
+    </div>
 
+
+
+    <main id="feedMain">
         <div id="feedContainer">
 
         </div>

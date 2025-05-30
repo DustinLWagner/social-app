@@ -6,12 +6,6 @@ function createPostCard(post) {
     let divCard = document.createElement('div');
     divCard.className = 'postCard';
 
-    //create username h3
-    // let username = document.createElement('h3');
-    // username.className = 'postcardUsername';
-    // username.innerText = post.author.username;
-    // divCard.append(username);
-
     //username links to profile page
     let username = document.createElement('h3');
     username.className = 'postcardUsername';
@@ -32,6 +26,9 @@ function createPostCard(post) {
         postMedia.src = post.mediaUrl;
         divCard.append(postMedia);
     }
+    //create line break after media
+    let lineBreak = document.createElement('br');
+    divCard.append(lineBreak);
 
     //create formatted timestamp
     let cardTime = document.createElement('sub')
@@ -40,11 +37,13 @@ function createPostCard(post) {
     let createdAt = post.createdAt;
     //convert from string to Date object
     let date = new Date(createdAt);
-    //format date into a readable string
-    let cardPostDate = date.toDateString();
+    //format date into a readable string,
+    //toLocaleString() method of Date instances returns string with representation of this date in the local timezone
+    let cardPostDate = date.toLocaleString();
     cardTime.innerText = cardPostDate;
     divCard.append(cardTime);
     //return back inside loadfeed() append this result to feedContainer
+    console.log()
     return divCard;
 
 }
