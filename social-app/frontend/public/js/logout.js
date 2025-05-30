@@ -1,7 +1,7 @@
-const LOGIN_PAGE = '/index.html';
+const LOGIN_PAGE = '/pages/index.html';
 
 function logoutUser() {
-    const logoutMessage = document.getElementById('logoutMessage');
+    const logoutMessage = document.getElementById('statusMsg');
     //display logoutMessage
     if (logoutMessage) {
         logoutMessage.textContent = 'Logging out...';
