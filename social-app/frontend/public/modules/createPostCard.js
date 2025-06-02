@@ -39,11 +39,17 @@ function createPostCard(post) {
     let date = new Date(createdAt);
     //format date into a readable string,
     //toLocaleString() method of Date instances returns string with representation of this date in the local timezone
-    let cardPostDate = date.toLocaleString();
+    let cardPostDate = date.toLocaleString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    });
     cardTime.innerText = cardPostDate;
     divCard.append(cardTime);
     //return back inside loadfeed() append this result to feedContainer
-    console.log()
     return divCard;
 
 }

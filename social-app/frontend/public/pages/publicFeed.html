@@ -29,20 +29,45 @@
                     <input id="password" name="password" class="formInput" placeholder="Password" type="password"
                         autocomplete="current-password" required />
                 </div>
-
-                <div>
-                    <button class="formButton" type="submit">Login</button>
-                    <p id="reg_link"><a href="register.html">Create an account</a>.</p>
-                </div>
+                <button class="formButton" type="submit">Login</button>
             </form>
         </section>
+
+        <div class="buttonsDiv">
+            <button id="homeBtn">Home</button>
+            <button id="openPostModal">New Post</button>
+            <p id="reg_link"><a href="register.html">Create an account</a>.</p>
+            <p id="postFailMsg" hidden>Post Failed. Try again.</p>
+            <p id="feedFailMsg" hidden>Failure to load feed</p>
+            <p id="loadingMsg" hidden>Loading feed...</p>
+        </div>
+    </div>
+
+    <div id="modalContainer">
+        <div id=modal>
+            <section id="createPost">
+                <div>
+                    <form id="createPostForm">
+                        <textarea name="content" id="postContent" required></textarea>
+
+                        <div id="modalButtons">
+                            <label for="fileInput" class="customFileUpload">Choose file</label>
+                            <input type="file" id="fileInput" accept="image/*" hidden />
+                            <button id="clearImg" type="button">Clear</button>
+                        </div>
+
+                        <img id="imgPreview" src="" alt="">
+
+                        <button id="submitPost" type="submit">Post it!</button>
+                    </form>
+
+                </div>
+            </section>
+        </div>
     </div>
 
     <main id="feedMain">
         <h2>Public Posts</h2>
-        <p id="feedFailMsg" hidden>Failure to load feed</p>
-        <p id="loadingMsg" hidden>Loading feed...</p>
-        <button id="homeBtn">Home</button>
         <div id="feedContainer">
             <p id="emptyFeedMsg" hidden>Feed is Empty</p>
 

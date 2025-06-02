@@ -28,7 +28,6 @@ h1,
 h2,
 h3 {
     color: #08605F;
-    ;
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -54,6 +53,7 @@ textarea {
     background-color: #333;
     color: #f0f0f0;
     transition: border 0.2s ease;
+    resize: none;
 }
 
 .formInput:focus,
@@ -65,7 +65,8 @@ textarea:focus {
 .formButton,
 #homeBtn,
 #submitPost,
-#logoutButton {
+#logoutButton,
+#openPostModal {
     width: 100%;
     padding: 0.6rem;
     color: #ffffff;
@@ -81,7 +82,8 @@ textarea:focus {
 .formButton:hover,
 #homeBtn:hover,
 #submitPost:hover,
-#logoutButton:hover {
+#logoutButton:hover,
+#openPostModal:hover {
     background-color: #023047;
 }
 
@@ -144,20 +146,10 @@ a:hover {
 
 .postCard img {
     width: fit-content;
+    max-width: 400px;
     align-self: center;
     margin-top: 0.5rem;
     border-radius: 8px;
-}
-
-#createPost textarea {
-    min-height: 80px;
-    resize: vertical;
-    margin-top: 0.5rem;
-}
-
-#logoutButton {
-    margin: 1rem 0;
-    background-color: #ef476f;
 }
 
 /* Layout override for publicFeed.html */
@@ -199,7 +191,7 @@ body.withSidebar {
     margin: auto;
     flex-grow: 1;
     padding: 2rem;
-    background-color: #1e1f26;
+    background-color: #2a2b32;
     overflow-y: auto;
     height: max-content;
 }
@@ -209,15 +201,6 @@ body.withSidebar {
     margin-bottom: 1rem;
     color: #ffffff;
 }
-
-/* Adjust body layout for responsiveness */
-body.withSidebar {
-    flex-direction: row;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-}
-
 
 /* Feed grows and becomes main focus */
 #feedMain {
@@ -240,10 +223,71 @@ body.withSidebar {
     }
 
     #sidebar {
-        width: 100%;
+        width: 50%;
         padding: 1.5rem;
         box-shadow: none;
         border-bottom: 1px solid #444;
     }
 
+}
+
+/*-----modal container----*/
+#modalContainer {
+    background-color: #35363fe8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+#modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #35363f;
+    border: 1px solid #444;
+    height: max-content;
+    width: 500px;
+    max-width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    min-width: 300px;
+
+}
+
+textarea#postContent {
+    margin-top: 1rem;
+    height: 150px;
+    width: 300px;
+    resize: none;
+}
+
+#createPostForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#imgPreview {
+    margin: 20px 0 0;
+}
+
+.customFileUpload,
+#clearImg {
+    width: 80px;
+    padding: 0.2rem;
+    margin: 1rem;
+    color: #fff;
+    background-color: #08605F;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: small;
+    transition: background-color 0.3s ease;
 }
