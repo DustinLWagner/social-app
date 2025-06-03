@@ -152,6 +152,48 @@ a:hover {
     border-radius: 8px;
 }
 
+/* like, share, comment buttons on postCard*/
+.cardBttmDiv {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 240px;
+    margin: 0 auto;
+
+}
+
+.cardBtns {
+    width: 20px;
+    height: 20px;
+
+}
+
+#likeBtn {
+    background-image: url(/icons/likeHeartEmpty.webp);
+}
+
+#shareBtn {
+    background-image: url(/icons/shareBtn.webp);
+}
+
+#commentBtn {
+    background-image: url(/icons/commentBtn.webp);
+}
+
+#likeBtn,
+#shareBtn,
+#commentBtn {
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
 /* Layout override for publicFeed.html */
 body.withSidebar {
     display: none;

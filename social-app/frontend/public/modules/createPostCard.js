@@ -30,6 +30,28 @@ function createPostCard(post) {
     let lineBreak = document.createElement('br');
     divCard.append(lineBreak);
 
+    ////////////////////////bottom div of post card for interaction butons//////////////////////////////
+
+    let cardBttmDiv = divCard.appendChild(document.createElement('div'));
+    cardBttmDiv.className = 'cardBttmDiv';
+
+    //like button
+    let likeBtn = document.createElement('button');
+    likeBtn.className = 'cardBtns';
+    likeBtn.setAttribute('id', 'likeBtn');
+    cardBttmDiv.append(likeBtn);
+    //like button
+    let shareBtn = document.createElement('button');
+    shareBtn.className = 'cardBtns';
+    shareBtn.setAttribute('id', 'shareBtn');
+    cardBttmDiv.append(shareBtn);
+    //like button
+    let commentBtn = document.createElement('button');
+    commentBtn.className = 'cardBtns';
+    commentBtn.setAttribute('id', 'commentBtn');
+    cardBttmDiv.append(commentBtn);
+    //
+
     //create formatted timestamp
     let cardTime = document.createElement('sub')
     cardTime.className = 'cardTimestamp';
@@ -38,7 +60,7 @@ function createPostCard(post) {
     //convert from string to Date object
     let date = new Date(createdAt);
     //format date into a readable string,
-    //toLocaleString() method of Date instances returns string with representation of this date in the local timezone
+    //toLocaleString() method of Date instances returns date/time in users local timezone
     let cardPostDate = date.toLocaleString('en-US', {
         month: '2-digit',
         day: '2-digit',
@@ -49,6 +71,7 @@ function createPostCard(post) {
     });
     cardTime.innerText = cardPostDate;
     divCard.append(cardTime);
+
     //return back inside loadfeed() append this result to feedContainer
     return divCard;
 
