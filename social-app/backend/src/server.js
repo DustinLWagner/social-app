@@ -32,7 +32,7 @@ const followRoutes = require('./routes/followRoutes');
 //userRoutes
 const userRoutes = require('./routes/userRoutes');
 
-//commentrRoutes
+//commentRoutes
 const commentRoutes = require('./routes/commentRoutes');
 
 app.use(cors(corsOptions));
@@ -40,12 +40,6 @@ app.use(cookieParser());
 
 //parse incoming request from the client with JSON, attach the parsed data to req.body
 app.use(express.json());
-
-// for routes from /api/auth
-app.use('/api/auth', authRoutes);
-
-//create post route
-app.use('/api/posts', postRoutes);
 
 //for protected (auth required)
 app.use(
@@ -59,22 +53,26 @@ app.use(
 app.use(
     express.static(path.join(__dirname, '../../frontend/public'))
 );
+
+// for routes from /api/auth
+app.use('/api/auth', authRoutes);
+
+//create post route
+app.use('/api/posts', postRoutes);
+
 //follow routes
 app.use('/api', followRoutes);
 
 //userRoutes
 app.use('/api/users', userRoutes);
 
-//userRoutes
+//commentRoutes
 app.use('/api/comments', commentRoutes);
 
-//middlewareJWT
-function handler(req, res) {
-    res.status(200).json({ message: 'Access Granted', userId: req.userId })
-};
-
-app.get('/api/auth/profile', verifyJWT, handler);
-
+// Auth check endpoint to verify JWT and return user info
+app.get('/api/auth/profile', verifyJWT, (req, res) => {
+    res.status(200).json({ message: 'Access Granted', userId: req.userId });
+});
 
 const PORT = process.env.PORT || 3000;
 console.log('Starting server...');

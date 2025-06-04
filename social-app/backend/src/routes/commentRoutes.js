@@ -10,6 +10,9 @@ const router = express.Router();
 const verifyJWT = require('../middleware/auth');
 
 //import createComment
-const { createComment } = require('../controllers/commentController')
+const { createComment } = require('../controllers/commentController');
 /// POST api/comments
-router.post('/', verifyJWT, upload.single('media'), createComment)
+router.post('/', verifyJWT, upload.single('media'), createComment);
+
+//export the router
+module.exports = router;
