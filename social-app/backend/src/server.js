@@ -32,6 +32,9 @@ const followRoutes = require('./routes/followRoutes');
 //userRoutes
 const userRoutes = require('./routes/userRoutes');
 
+//commentrRoutes
+const commentRoutes = require('./routes/commentRoutes');
+
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
@@ -61,6 +64,9 @@ app.use('/api', followRoutes);
 
 //userRoutes
 app.use('/api/users', userRoutes);
+
+//userRoutes
+app.use('/api/comments', commentRoutes);
 
 //middlewareJWT
 function handler(req, res) {
