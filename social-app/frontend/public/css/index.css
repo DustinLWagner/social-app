@@ -287,6 +287,19 @@ body.withSidebar {
     opacity: 1;
 }
 
+#commentsContainer {
+    background-color: #35363fe8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
 #modal {
     display: flex;
     justify-content: center;

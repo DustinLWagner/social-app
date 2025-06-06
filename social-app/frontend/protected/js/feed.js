@@ -4,6 +4,7 @@ import { checkAuth } from "./checkAuth.js";
 import { logoutUser } from "/js/logout.js";
 import { createPostCard } from "/modules/createPostCard.js";
 import { loadFeed } from "/modules/loadFeed.js";
+import { commentsModal } from "/modules/commentsModal.js";
 
 const feedContainer = document.getElementById('feedContainer');
 const emptyFeedMsg = document.getElementById('emptyFeedMsg');
@@ -19,6 +20,7 @@ checkAuth();
 document.addEventListener('DOMContentLoaded', () => {
     loadFeed();
     postModal();
+    commentsModal();
 });
 
 //welcome message saying Hello ${USER}

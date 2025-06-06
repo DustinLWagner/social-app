@@ -5,6 +5,7 @@ function createPostCard(post) {
     //create div
     let divCard = document.createElement('div');
     divCard.className = 'postCard';
+    divCard.dataset.postId = post.id;
 
     //username links to profile page
     let username = document.createElement('h3');
