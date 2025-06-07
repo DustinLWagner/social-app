@@ -5,6 +5,7 @@ import { checkIfLoggedIn } from "../modules/checkIfLoggedIn.js";
 import { followModule } from "../modules/followModule.js";
 import { getUserProfile } from "../modules/getUserProfile.js";
 import { followStatus } from "../modules/getUserProfile.js";
+import { commentsModal } from "/modules/commentsModal.js";
 
 const feedContainer = document.getElementById('feedContainer');
 const emptyFeedMsg = document.getElementById('emptyFeedMsg');
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const viewedUserId = new URLSearchParams(window.location.search).get('userId');
     await getUserProfile(viewedUserId);
     await loadFeed(viewedUserId);
+
 
     //get logged in userId
     const loggedInUserId = (await checkIfLoggedIn())?.id.toString() || null;

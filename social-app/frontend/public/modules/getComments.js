@@ -1,4 +1,4 @@
-async function loadComments(postId) {
+async function getComments(postId) {
     try {
         //GET comments from /api/comments/:postId 
         const commentsUrl = `/api/comments/${postId}`
@@ -14,4 +14,4 @@ async function loadComments(postId) {
     }
 };
 
-export { loadComments }
+export { getComments }

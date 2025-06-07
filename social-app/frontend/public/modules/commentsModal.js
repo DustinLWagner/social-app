@@ -1,4 +1,5 @@
-import { loadComments } from "/modules/loadComments.js";
+import { getComments } from "/modules/getComments.js";
+import { createCommentCard } from "/modules/createCommentCard.js";
 
 async function commentsModal(card) {
     const commentsContainer = document.getElementById('commentsContainer');
@@ -11,14 +12,22 @@ async function commentsModal(card) {
         if (e.target.closest('.cardBtns')) return;
         //set and pass postId to the modal
         const postId = card.dataset.postId;
-        //get comments from loadComments()
-        const comments = await loadComments(postId);
+        //get comments 
+        const comments = await getComments(postId);
+        //if no comments display message
+        if (!comments.length) {
+            document.getElementById('viewComments').innerHTML = '<p>No Comments</p>';
+        }
         //insert into modal
-        viewComments.innerHTML = comments.map(comment =>
-            `<div class=commentCard>
-             <p><strong>${comment.author.username}</strong></p>
-             <p>${comment.content}</p>
-             </div>`).join('');
+        //Loop through comments and create cards
+        for (const comment of comments) {
+            //Create the card 
+            let card = createCommentCard(comment);
+            //append postCard from createCommentCard
+            viewComments.append(card);
+            // commentsModal(card); //open comments of a comment
+        };
+
         //display modal
         commentsContainer.style.display = 'flex';
 
@@ -30,6 +39,7 @@ async function commentsModal(card) {
 document.getElementById('commentsContainer').addEventListener('click', (click) => {
     if (click.target === commentsContainer) {
         commentsContainer.style.display = 'none';
+        viewComments.innerHTML = '';
     }
 });
 
