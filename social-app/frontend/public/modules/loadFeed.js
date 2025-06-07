@@ -25,9 +25,9 @@ async function loadFeed(userId = null) {
         for (const post of posts) {
             //Create the card 
             let card = createPostCard(post);
-            commentsModal();
             //append postCard from createPostCard
             feedContainer.append(card);
+            commentsModal(card);
         };
 
     } catch (error) {

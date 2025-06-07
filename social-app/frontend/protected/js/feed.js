@@ -20,7 +20,6 @@ checkAuth();
 document.addEventListener('DOMContentLoaded', () => {
     loadFeed();
     postModal();
-    commentsModal();
 });
 
 //welcome message saying Hello ${USER}

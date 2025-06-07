@@ -165,24 +165,6 @@ a:hover {
 .cardBtns {
     width: 20px;
     height: 20px;
-
-}
-
-#likeBtn {
-    background-image: url(/icons/likeHeartEmpty.webp);
-}
-
-#shareBtn {
-    background-image: url(/icons/shareBtn.webp);
-}
-
-#commentBtn {
-    background-image: url(/icons/commentBtn.webp);
-}
-
-#likeBtn,
-#shareBtn,
-#commentBtn {
     background-color: transparent;
     background-size: cover;
     background-repeat: no-repeat;
@@ -192,6 +174,19 @@ a:hover {
     border: none;
     cursor: pointer;
     padding: 0;
+
+}
+
+.cardBtns.likeBtn {
+    background-image: url(/icons/likeHeartEmpty.webp);
+}
+
+.cardBtns.shareBtn {
+    background-image: url(/icons/shareBtn.webp);
+}
+
+.cardBtns.commentBtn {
+    background-image: url(/icons/commentBtn.webp);
 }
 
 /* Layout override for publicFeed.html */

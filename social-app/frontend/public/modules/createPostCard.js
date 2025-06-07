@@ -38,20 +38,19 @@ function createPostCard(post) {
 
     //like button
     let likeBtn = document.createElement('button');
-    likeBtn.className = 'cardBtns';
-    likeBtn.setAttribute('id', 'likeBtn');
+    likeBtn.className = 'cardBtns likeBtn';
+    likeBtn.dataset.postId = post.id;
     cardBttmDiv.append(likeBtn);
-    //like button
+    //share button
     let shareBtn = document.createElement('button');
-    shareBtn.className = 'cardBtns';
-    shareBtn.setAttribute('id', 'shareBtn');
+    shareBtn.className = 'cardBtns shareBtn';
+    shareBtn.dataset.postId = post.id;
     cardBttmDiv.append(shareBtn);
-    //like button
+    //comment button
     let commentBtn = document.createElement('button');
-    commentBtn.className = 'cardBtns';
-    commentBtn.setAttribute('id', 'commentBtn');
+    commentBtn.className = 'cardBtns commentBtn';
+    commentBtn.dataset.postId = post.id;
     cardBttmDiv.append(commentBtn);
-    //
 
     //create formatted timestamp
     let cardTime = document.createElement('sub')
