@@ -297,6 +297,15 @@ a:hover {
     opacity: 1;
 }
 
+.commentCard {
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0;
+}
+
+.commentCard p {
+    margin: 2px 0;
+}
+
 #modal {
     display: flex;
     justify-content: center;

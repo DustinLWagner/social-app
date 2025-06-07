@@ -1,5 +1,6 @@
+const { response } = require('express');
 const prisma = require('../utils/prisma');
-
+//create the comment
 async function createComment(req, res) {
     //checks for JWT
     if (!req.userId) {
@@ -46,5 +47,28 @@ async function createComment(req, res) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+//grabbing the comments 
+async function getCommentsByPostId(req, res) {
+    const { postId } = req.params;
+    try {
+        const comments = await prisma.comment.findMany({
+            where: { postId: Number(postId) },
+            orderBy: { createdAt: 'asc' },
+            include: {
+                author: {
+                    select: {
+                        id: true,
+                        username: true
+                    }
+                }
+            }
+        });
+        res.json(comments);
 
-module.exports = { createComment };
+    } catch (error) {
+        console.error('Error fetching comments:', error);
+        res.status(500).json({ error: 'Failed to fetch comments' });
+    }
+}
+
+module.exports = { createComment, getCommentsByPostId };
