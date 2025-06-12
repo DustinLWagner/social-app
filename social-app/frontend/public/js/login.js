@@ -1,4 +1,4 @@
-const FEED_PAGE = '/protected/feed.html';
+const FEED_PAGE = '../protected/feed.html';
 
 //grab login form
 document.getElementById('loginForm').addEventListener('submit',

@@ -11,12 +11,14 @@ const router = express.Router();
 const verifyJWT = require('../middleware/auth');
 //import createPost
 const { createPost } = require('../controllers/postController');
-// get feed 
-const { getFeed } = require('../controllers/feedController');
+// get feeds
+const { getFeed, getUserFeed } = require('../controllers/feedController');
 // POST api/posts/create - protected with file upload
 router.post('/create', verifyJWT, upload.single('media'), createPost);
 //GET /api/posts/feed - public
 router.get('/feed', getFeed);
+// GET /api/users/:id/posts
+router.get('/users/:id/posts', getUserFeed);
 
 //export the router object
 module.exports = router;
