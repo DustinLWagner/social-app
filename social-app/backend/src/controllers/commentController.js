@@ -50,6 +50,11 @@ async function createComment(req, res) {
 //grabbing the comments 
 async function getCommentsByPostId(req, res) {
     const { postId } = req.params;
+
+    if (!postId || isNaN(Number(postId))) {
+        return res.status(400).json({ error: 'Valid postId required' });
+    }
+
     try {
         const comments = await prisma.comment.findMany({
             where: { postId: Number(postId) },
@@ -71,4 +76,27 @@ async function getCommentsByPostId(req, res) {
     }
 }
 
-module.exports = { createComment, getCommentsByPostId };
+async function getCommentCount(req, res) {
+    const { postId } = req.query;
+
+    if (!postId || isNaN(Number(postId))) {
+        return res.status(400).json({ error: 'Valid postId required' });
+    }
+
+    try {
+        const commentsCount = await prisma.comment.count({
+            where: {
+                postId: Number(postId)
+            }
+        });
+
+        res.json(commentsCount);
+
+    } catch (error) {
+        console.error('Error fetching comment count', error);
+        res.status(500).json({ error: 'Failed to fetch comment count' });
+    }
+}
+
+
+module.exports = { createComment, getCommentsByPostId, getCommentCount };

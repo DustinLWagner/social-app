@@ -272,6 +272,13 @@ a:hover {
     background-image: url(/icons/commentBtn.webp);
 }
 
+.counterDisplay {
+    margin-left: 2.5em;
+    text-align: center;
+    color: #a0a0a0;
+
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     body.withSidebar {
