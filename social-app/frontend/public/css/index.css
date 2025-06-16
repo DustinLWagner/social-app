@@ -65,9 +65,10 @@ textarea:focus {
 .formButton,
 #homeBtn,
 #submitPost,
+#submitComment,
 #logoutButton,
 #openPostModal {
-    width: 100%;
+    width: 230px;
     padding: 0.6rem;
     color: #ffffff;
     background-color: #08605F;
@@ -79,11 +80,14 @@ textarea:focus {
     margin-top: 0.5rem;
 }
 
+.customFileUpload:hover,
 .formButton:hover,
 #homeBtn:hover,
 #submitPost:hover,
 #logoutButton:hover,
-#openPostModal:hover {
+#openPostModal:hover,
+#submitComment:hover,
+#clearImg:hover {
     background-color: #023047;
 }
 
@@ -294,7 +298,6 @@ body.withSidebar {
     display: none;
     justify-content: center;
     align-items: center;
-
     opacity: 1;
 
 }
@@ -305,7 +308,7 @@ body.withSidebar {
     align-items: center;
     background-color: #35363f;
     border: 1px solid #444;
-    height: 100%;
+    height: max-content;
     max-height: 90vh;
     width: 500px;
     max-width: 100%;
@@ -315,18 +318,21 @@ body.withSidebar {
     overflow-y: auto;
 }
 
-textarea#postContent {
+textarea#postContent,
+textarea#commentContent {
     margin-top: 1rem;
     height: 150px;
     width: 300px;
     resize: none;
 }
 
-#createPostForm {
+#createPostForm,
+.commentForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 0.2rem;
 }
 
 #imgPreview {

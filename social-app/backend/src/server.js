@@ -74,9 +74,11 @@ app.get('/api/auth/profile', verifyJWT, (req, res) => {
     res.status(200).json({ message: 'Access Granted', userId: req.userId });
 });
 
+//avoid 404 on favicon.ico
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 const PORT = process.env.PORT || 3000;
 console.log('Starting server...');
-
 
 //log port
 app.listen(PORT, () => {

@@ -11,11 +11,15 @@ async function postModal() {
     //modalcontainer button logic
     document.getElementById('openPostModal').addEventListener('click', () => {
         modalContainer.style.display = 'flex';
+        postMediaInput.value = ''; //reset input
+        imgPreview.src = ''; //clear image preview
     });
     //clicking outside modal div hides modal
     document.getElementById('modalContainer').addEventListener('click', (click) => {
         if (click.target === modalContainer) {
             modalContainer.style.display = 'none';
+            postMediaInput.value = ''; //reset input
+            imgPreview.src = ''; //clear image preview
         }
     });
     //create post form//

@@ -39,11 +39,33 @@ h2 {
     justify-content: space-around;
 }
 
+.formInput,
+textarea {
+    padding: 0.5rem;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #f0f0f0;
+    margin-top: 1rem;
+    min-height: 150px;
+    width: 300px;
+    transition: border 0.2s ease;
+    resize: none;
+}
+
+.formInput:focus,
+textarea:focus {
+    border-color: #08605F;
+    outline: none;
+}
+
 #followBtn,
 #pubFeedBtn,
 #homeBtn,
-#loginBtn {
-    width: 80px;
+#loginBtn,
+#submitComment {
+    width: 230px;
     padding: 0.6rem;
     color: #ffffff;
     background-color: #08605F;
@@ -55,11 +77,32 @@ h2 {
     margin: 1rem;
 }
 
+#submitComment {
+    margin-bottom: 0.6rem;
+}
+
+.customFileUpload:hover,
+#clearImg:hover,
+#submitComment:hover,
 #homeBtn:hover,
 #followBtn:hover,
 #pubFeedBtn:hover,
 #loginBtn:hover {
     background-color: #023047;
+}
+
+.customFileUpload,
+#clearImg {
+    width: 80px;
+    padding: 0.2rem;
+    margin: 1rem;
+    color: #fff;
+    background-color: #08605F;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: small;
+    transition: background-color 0.3s ease;
 }
 
 p {
@@ -211,7 +254,7 @@ a:hover {
     align-items: center;
     background-color: #35363f;
     border: 1px solid #444;
-    height: 100%;
+    height: max-content;
     max-height: 90vh;
     width: 500px;
     max-width: 100%;
@@ -219,4 +262,12 @@ a:hover {
     border-radius: 12px;
     min-width: 300px;
     overflow-y: auto;
+}
+
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.2rem;
 }

@@ -101,7 +101,8 @@ textarea:focus {
 #submitPost,
 #logoutButton,
 #openPostModal,
-#notificationBtn {
+#notificationBtn,
+#submitComment {
     width: 230px;
     padding: 0.6rem;
     margin-top: 0.5rem;
@@ -112,6 +113,10 @@ textarea:focus {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+#submitComment {
+    margin-bottom: 0.6rem;
 }
 
 #buttonsDiv {
@@ -125,12 +130,15 @@ textarea:focus {
     min-width: 100px;
 }
 
+.customFileUpload:hover,
 .formButton:hover,
 #pubFeedBtn:hover,
 #submitPost:hover,
 #logoutButton:hover,
 #postMedia:hover,
 #openPostModal:hover,
+#submitComment:hover,
+#clearImg:hover,
 #notificationBtn:hover {
     background-color: #023047;
 }
@@ -316,7 +324,7 @@ a:hover {
     align-items: center;
     background-color: #35363f;
     border: 1px solid #444;
-    height: 100%;
+    height: max-content;
     max-height: 90vh;
     width: 500px;
     max-width: 100%;
@@ -326,11 +334,13 @@ a:hover {
     overflow-y: auto;
 }
 
-#createPostForm {
+#createPostForm,
+.commentForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 0.2rem;
 }
 
 #imgPreview {
