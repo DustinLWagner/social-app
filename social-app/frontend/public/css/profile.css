@@ -39,11 +39,33 @@ h2 {
     justify-content: space-around;
 }
 
+.formInput,
+textarea {
+    padding: 0.5rem;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #f0f0f0;
+    margin-top: 1rem;
+    min-height: 150px;
+    width: 300px;
+    transition: border 0.2s ease;
+    resize: none;
+}
+
+.formInput:focus,
+textarea:focus {
+    border-color: #08605F;
+    outline: none;
+}
+
 #followBtn,
 #pubFeedBtn,
 #homeBtn,
-#loginBtn {
-    width: 80px;
+#loginBtn,
+#submitComment {
+    width: 230px;
     padding: 0.6rem;
     color: #ffffff;
     background-color: #08605F;
@@ -55,11 +77,32 @@ h2 {
     margin: 1rem;
 }
 
+#submitComment {
+    margin-bottom: 0.6rem;
+}
+
+.customFileUpload:hover,
+#clearImg:hover,
+#submitComment:hover,
 #homeBtn:hover,
 #followBtn:hover,
 #pubFeedBtn:hover,
 #loginBtn:hover {
     background-color: #023047;
+}
+
+.customFileUpload,
+#clearImg {
+    width: 80px;
+    padding: 0.2rem;
+    margin: 1rem;
+    color: #fff;
+    background-color: #08605F;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: small;
+    transition: background-color 0.3s ease;
 }
 
 p {
@@ -94,29 +137,137 @@ a:hover {
     gap: 1.5rem;
 }
 
-.postCard {
+.postCard img,
+.commentCard img {
+    max-width: calc(100vw / 2.5);
+    width: 100%;
+    align-self: center;
+    margin: 0.5rem 0 0.5rem 0;
+    border-radius: 8px;
+    display: block;
+}
+
+#viewComments,
+.postCard,
+.commentCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #35363f;
     border: 1px solid #444;
     border-radius: 12px;
     padding: 1rem;
     color: #e0e0e0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    min-width: 402px;
+    min-width: 25rem;
+    max-width: 40rem;
     align-self: center;
 }
 
-.postCard h3 {
+.commentCard {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    max-width: calc(40rem / 5);
+
+}
+
+.postCard h3,
+.commentCard h3 {
     margin-bottom: 0.5rem;
     color: #077a78;
 }
 
-.postCard p {
+.postCard p,
+.commentCard p {
     font-size: 0.95rem;
     color: #d0d0d0;
 }
 
-.postCard img {
-    margin-top: 0.5rem;
+/* like, share, comment buttons on postCard*/
+.cardBttmDiv {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 240px;
+    margin: 0 auto;
+    padding-top: 1rem;
+}
+
+.cardBtns {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+}
+
+.cardBtns.likeBtn {
+    background-image: url(/icons/likeHeartEmpty.webp);
+}
+
+.cardBtns.shareBtn {
+    background-image: url(/icons/shareBtn.webp);
+}
+
+.cardBtns.commentBtn {
+    background-image: url(/icons/commentBtn.webp);
+}
+
+/*-----modal container----*/
+#modalContainer {
+    background-color: #35363fe8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+#commentsContainer {
+    background-color: #35363fe8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+#modal {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: #35363f;
+    border: 1px solid #444;
+    height: max-content;
+    max-height: 90vh;
+    width: 500px;
     max-width: 100%;
-    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    min-width: 300px;
+    overflow-y: auto;
+}
+
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.2rem;
 }

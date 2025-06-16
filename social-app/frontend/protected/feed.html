@@ -18,34 +18,56 @@
         <p id="statusMsg"></p>
         <p id="emptyFeedMsg" hidden>Feed is Empty</p>
         <p id="feedFailMsg" hidden>Failure to load feed</p>
+        <p id="postFailMsg" hidden>Post Failed. Try again.</p>
 
         <div id="buttonsDiv">
             <button id="pubFeedBtn">Public</button>
             <button id="logoutButton">Logout</button>
-        </div>
-        <section id="createPost">
-            <div>
-                <form id="createPostForm">
-                    <textarea name="content" id="postContent" required></textarea>
+            <button id="openPostModal">New Post</button>
+            <button id="notificationBtn">Notifications</button>
 
-                    <label for="fileInput" class="customFileUpload">Choose file</label>
-                    <input type="file" id="fileInput" hidden />
+            <!--Create New Post Modal-->
+            <div id="modalContainer">
+                <div id=modal>
+                    <section id="createPost">
+                        <div>
+                            <form id="createPostForm">
+                                <textarea name="content" id="postContent" required></textarea>
 
-                    <br>
-                    <button id="submitPost" type="submit">Post it!</button>
-                </form>
-                <p id="postFailMsg" hidden>Post Failed. Try again.</p>
+                                <div id="modalButtons">
+                                    <label for="fileInput" class="customFileUpload">Choose file</label>
+                                    <input type="file" id="fileInput" accept="image/*" hidden />
+                                    <button id="clearImg" type="button">Clear</button>
+                                </div>
+
+                                <img id="imgPreview" src="" alt="">
+
+                                <button id="submitPost" type="submit">Post it!</button>
+                            </form>
+
+                        </div>
+                    </section>
+                </div>
             </div>
-        </section>
+
+            <!--Comments Modal-->
+            <div id="commentsContainer">
+                <div id=modal>
+                    <section id="viewComments">
+                    </section>
+                </div>
+            </div>
+
+
+        </div>
     </div>
 
 
-
+    <!--Global Feed, custom feed in future-->
     <main id="feedMain">
         <div id="feedContainer">
 
         </div>
-
     </main>
 
 

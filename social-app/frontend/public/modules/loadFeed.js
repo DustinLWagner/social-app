@@ -1,4 +1,5 @@
 import { createPostCard } from "/modules/createPostCard.js";
+import { commentsModal } from "/modules/commentsModal.js";
 
 async function loadFeed(userId = null) {
     const feedContainer = document.getElementById('feedContainer');
@@ -26,6 +27,7 @@ async function loadFeed(userId = null) {
             let card = createPostCard(post);
             //append postCard from createPostCard
             feedContainer.append(card);
+            commentsModal(card);
         };
 
     } catch (error) {

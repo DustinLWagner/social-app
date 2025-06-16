@@ -28,7 +28,6 @@ h1,
 h2,
 h3 {
     color: #08605F;
-    ;
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -54,6 +53,7 @@ textarea {
     background-color: #333;
     color: #f0f0f0;
     transition: border 0.2s ease;
+    resize: none;
 }
 
 .formInput:focus,
@@ -65,8 +65,10 @@ textarea:focus {
 .formButton,
 #homeBtn,
 #submitPost,
-#logoutButton {
-    width: 100%;
+#submitComment,
+#logoutButton,
+#openPostModal {
+    width: 230px;
     padding: 0.6rem;
     color: #ffffff;
     background-color: #08605F;
@@ -78,10 +80,14 @@ textarea:focus {
     margin-top: 0.5rem;
 }
 
+.customFileUpload:hover,
 .formButton:hover,
 #homeBtn:hover,
 #submitPost:hover,
-#logoutButton:hover {
+#logoutButton:hover,
+#openPostModal:hover,
+#submitComment:hover,
+#clearImg:hover {
     background-color: #023047;
 }
 
@@ -109,6 +115,7 @@ a:hover {
     font-weight: bold;
 }
 
+/* Feed and comments*/
 #feedContainer {
     margin-top: 2rem;
     display: flex;
@@ -116,42 +123,85 @@ a:hover {
     gap: 1.5rem;
 }
 
-.postCard {
+.postCard img,
+.commentCard img {
+    max-width: calc(100vw / 2.5);
+    width: 100%;
+    align-self: center;
+    margin: 0.5rem 0 0.5rem 0;
+    border-radius: 8px;
+    display: block;
+}
+
+#viewComments,
+.postCard,
+.commentCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #35363f;
     border: 1px solid #444;
     border-radius: 12px;
     padding: 1rem;
     color: #e0e0e0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    min-width: 402px;
+    min-width: 25rem;
+    max-width: 40rem;
     align-self: center;
 }
 
-.postCard h3 {
+.commentCard {
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    color: #08605F;
 }
 
-.postCard p {
+.postCard h3,
+.commentCard h3 {
+    margin-bottom: 0.5rem;
+    color: #077a78;
+}
+
+.postCard p,
+.commentCard p {
     font-size: 0.95rem;
     color: #d0d0d0;
 }
 
-.postCard img {
-    margin-top: 0.5rem;
-    max-width: 100%;
-    border-radius: 8px;
+/* like, share, comment buttons on postCard*/
+.cardBttmDiv {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 240px;
+    margin: 0 auto;
+    padding-top: 1rem;
 }
 
-#createPost textarea {
-    min-height: 80px;
-    resize: vertical;
-    margin-top: 0.5rem;
+.cardBtns {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
 }
 
-#logoutButton {
-    margin: 1rem 0;
-    background-color: #ef476f;
+.cardBtns.likeBtn {
+    background-image: url(/icons/likeHeartEmpty.webp);
+}
+
+.cardBtns.shareBtn {
+    background-image: url(/icons/shareBtn.webp);
+}
+
+.cardBtns.commentBtn {
+    background-image: url(/icons/commentBtn.webp);
 }
 
 /* Layout override for publicFeed.html */
@@ -188,39 +238,21 @@ body.withSidebar {
     text-align: center;
 }
 
-/* Feed section layout */
+/* Feed */
 #feedMain {
     margin: auto;
     flex-grow: 1;
     padding: 2rem;
-    background-color: #1e1f26;
+    background-color: #2a2b32;
     overflow-y: auto;
-    height: max-content;
+    height: 100vh;
+    max-width: 50%;
 }
 
 #feedMain h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: #ffffff;
-}
-
-/* Adjust body layout for responsiveness */
-body.withSidebar {
-    flex-direction: row;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-}
-
-
-/* Feed grows and becomes main focus */
-#feedMain {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    height: 100vh;
-    max-width: 50%;
-    overflow: auto;
 }
 
 /* Responsive tweaks for smaller screens */
@@ -234,10 +266,89 @@ body.withSidebar {
     }
 
     #sidebar {
-        width: 100%;
+        width: 50%;
         padding: 1.5rem;
         box-shadow: none;
         border-bottom: 1px solid #444;
     }
 
+}
+
+/*-----modal container----*/
+#modalContainer {
+    background-color: #35363fe8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+#commentsContainer {
+    background-color: #35363fe8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+
+}
+
+#modal {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: #35363f;
+    border: 1px solid #444;
+    height: max-content;
+    max-height: 90vh;
+    width: 500px;
+    max-width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    min-width: 300px;
+    overflow-y: auto;
+}
+
+textarea#postContent,
+textarea#commentContent {
+    margin-top: 1rem;
+    height: 150px;
+    width: 300px;
+    resize: none;
+}
+
+#createPostForm,
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.2rem;
+}
+
+#imgPreview {
+    margin: 20px 0 0;
+}
+
+.customFileUpload,
+#clearImg {
+    width: 80px;
+    padding: 0.2rem;
+    margin: 1rem;
+    color: #fff;
+    background-color: #08605F;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: small;
+    transition: background-color 0.3s ease;
 }
