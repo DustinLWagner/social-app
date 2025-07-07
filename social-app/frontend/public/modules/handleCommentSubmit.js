@@ -1,4 +1,5 @@
 import { createCommentCard } from "/modules/createCommentCard.js";
+import { injectCommentCount } from "/modules/injectCommentCount.js";
 
 async function handleCommentSubmit({ postId, commentContent, fileInput, statusMsg, viewComments, imgPreview, form }) {
     statusMsg.hidden = true;
@@ -48,7 +49,9 @@ async function handleCommentSubmit({ postId, commentContent, fileInput, statusMs
         }
 
         form.querySelector('button').disabled = false;
-
+        //update comment counter
+        const comCount = document.querySelector(`[data-post-id="${postId}"] .counterDisplay`);
+        injectCommentCount(postId, comCount);
 
         console.log('fileInput.files[0]', fileInput.files[0]);
 

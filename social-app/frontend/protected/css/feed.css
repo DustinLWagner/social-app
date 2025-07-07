@@ -276,6 +276,7 @@ a:hover {
     margin-left: 2.5em;
     text-align: center;
     color: #a0a0a0;
+    cursor: default;
 
 }
 

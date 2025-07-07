@@ -1,4 +1,5 @@
 import { injectCommentCount } from "/modules/injectCommentCount.js";
+import { commentsModal } from "/modules/commentsModal.js";
 
 /// load feed helper loop function///
 
@@ -59,9 +60,10 @@ function createPostCard(post) {
     const comCount = document.createElement('sub');
     comCount.className = 'counterDisplay';
     comCount.name = 'commentCount'
-    // comCount.innerText = '5'
     injectCommentCount(post.id, comCount);
     commentBtn.append(comCount);
+
+    commentsModal(commentBtn, post.id);
 
     //create formatted timestamp
     const cardTime = document.createElement('sub')

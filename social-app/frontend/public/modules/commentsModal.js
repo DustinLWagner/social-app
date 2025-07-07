@@ -3,23 +3,20 @@ import { createCommentCard } from "/modules/createCommentCard.js";
 import { createCommentForm } from "/modules/createCommentForm.js"
 import { handleCommentSubmit } from "/modules/handleCommentSubmit.js";
 
-async function commentsModal(card) {
+
+async function commentsModal(commentBtn, postId) {
     const commentsContainer = document.getElementById('commentsContainer');
     const viewComments = document.getElementById('viewComments');
 
-    //commentsContainer button logic
-    card.addEventListener('click', async (e) => {
+    //commentsContainer comment button logic
+    commentBtn.addEventListener('click', async (e) => {
 
-        //ignore modal open if button is clicked
-        if (e.target.closest('.cardBtns')) return;
-        //set and pass postId to the modal
-        const postId = card.dataset.postId;
         //get comments 
         const comments = await getComments(postId);
         //clear to prevent duplicates
         viewComments.innerHTML = '';
-        const form = createCommentForm();
         //insert create comment form into modal
+        const form = createCommentForm();
         viewComments.append(form);
         const fileInput = form.querySelector(`#fileInput-${form.id}`);
         const imgPreview = form.querySelector('#imgPreview');
