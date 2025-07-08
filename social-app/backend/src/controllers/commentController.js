@@ -40,7 +40,6 @@ async function createComment(req, res) {
             }
         });
         //returns post object
-        console.log(`Comment created by user ${req.userId} on post ${postId}`);
         return res.status(201).json(newComment);
     } catch (error) {
         console.error('Could not create comment:', error);

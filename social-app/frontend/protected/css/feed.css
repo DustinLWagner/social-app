@@ -264,6 +264,10 @@ a:hover {
     background-image: url(/icons/likeHeartEmpty.webp);
 }
 
+.cardBtns.likeBtn.full {
+    background-image: url(/icons/likeHeartFull.webp);
+}
+
 .cardBtns.shareBtn {
     background-image: url(/icons/shareBtn.webp);
 }

@@ -1,5 +1,6 @@
 import { injectCommentCount } from "/modules/injectCommentCount.js";
 import { commentsModal } from "/modules/commentsModal.js";
+import { toggleLike } from "/modules/likesModule.js";
 
 /// load feed helper loop function///
 
@@ -40,10 +41,48 @@ function createPostCard(post) {
     cardBttmDiv.className = 'cardBttmDiv';
 
     //like button
+
     const likeBtn = document.createElement('button');
     likeBtn.className = 'cardBtns likeBtn';
     likeBtn.dataset.postId = post.id;
+    likeBtn.dataset.targetType = 'post';
+    if (post.likedByUser) {
+        //set full heart icon and mark as liked
+        likeBtn.classList.add('full');
+        likeBtn.dataset.isLiked = 'true';
+    } else {
+        //keep default empty heart
+        likeBtn.dataset.isLiked = 'false';
+    }
     cardBttmDiv.append(likeBtn);
+
+    likeBtn.addEventListener('click', async () => {
+        const targetId = Number(likeBtn.dataset.postId);
+        const targetType = likeBtn.dataset.targetType;
+        //get current button state
+        const isLiked = likeBtn.dataset.isLiked === 'true';
+        //call api and wait
+        try {
+            const result = await toggleLike(targetId, targetType, isLiked);
+
+            if (result.message === 'Unliked!') {
+                //was liked now unlike UI state
+                likeBtn.classList.remove('full');//sets the empty heart
+                likeBtn.dataset.isLiked = 'false';
+            } else if (result.message === 'Liked!') {
+                //was unliked now like UI state
+                likeBtn.classList.add('full');//sets the full heart
+                likeBtn.dataset.isLiked = 'true'
+            }
+
+            else if (result.error) {
+                console.error('Error:', result.error);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+        }
+    });
+
     //share button
     const shareBtn = document.createElement('button');
     shareBtn.className = 'cardBtns shareBtn';

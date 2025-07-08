@@ -35,6 +35,9 @@ const userRoutes = require('./routes/userRoutes');
 //commentRoutes
 const commentRoutes = require('./routes/commentRoutes');
 
+//likes routes
+const likesRoutes = require('./routes/likesRoutes');
+
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
@@ -48,10 +51,6 @@ app.use(
         res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
         next();
     }, express.static(path.join(__dirname, '../../frontend/protected')),
-);
-//for public (no auth required)
-app.use(
-    express.static(path.join(__dirname, '../../frontend/public'))
 );
 
 // for routes from /api/auth
@@ -69,10 +68,18 @@ app.use('/api/users', userRoutes);
 //commentRoutes
 app.use('/api/comments', commentRoutes);
 
+//likesRoutes
+app.use('/api/likes', likesRoutes);
+
 // Auth check endpoint to verify JWT and return user info
 app.get('/api/auth/profile', verifyJWT, (req, res) => {
     res.status(200).json({ message: 'Access Granted', userId: req.userId });
 });
+
+//for public (no auth required)
+app.use(
+    express.static(path.join(__dirname, '../../frontend/public'))
+);
 
 //avoid 404 on favicon.ico
 app.get('/favicon.ico', (req, res) => res.status(204).end());
