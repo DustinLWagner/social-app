@@ -15,9 +15,10 @@ router.post('/', verifyJWT, createLike);
 router.delete('/', verifyJWT, deleteLike);
 
 //GET like counts
-//router.get('/count', getLikesCount);
+router.get('/count', getLikesCount);
+
 // GET api/likes/:postId
-//router.get('/posts/:postId', verifyJWT, getLikesByPostId);
+// router.get('/posts/:postId', verifyJWT, getLikesByPostId);
 //GET api/likes/:commentId
 //router.get('/comments/:commentId', verifyJWT, getLikesByCommentId);
 

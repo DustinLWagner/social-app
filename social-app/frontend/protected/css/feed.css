@@ -284,6 +284,14 @@ a:hover {
 
 }
 
+.likeCounterDisplay {
+    margin-left: 2.5em;
+    text-align: center;
+    color: #a0a0a0;
+    cursor: default;
+
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     body.withSidebar {

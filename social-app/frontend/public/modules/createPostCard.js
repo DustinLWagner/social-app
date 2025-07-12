@@ -1,4 +1,5 @@
-import { injectCommentCount } from "/modules/injectCommentCount.js";
+import { injectCommentCount } from "/modules/injectCommentCount.js"
+import { injectLikeCount } from "/modules/injectLikeCount.js";
 import { commentsModal } from "/modules/commentsModal.js";
 import { toggleLike } from "/modules/likesModule.js";
 
@@ -56,6 +57,14 @@ function createPostCard(post) {
     }
     cardBttmDiv.append(likeBtn);
 
+    //display output from injectLikeCount next to Like button
+    const likesCount = document.createElement('sub');
+    likesCount.className = 'likeCounterDisplay';
+    likesCount.name = 'likesCount'
+    injectLikeCount(post.id, likesCount);
+    likeBtn.append(likesCount);
+
+    //update like button status
     likeBtn.addEventListener('click', async () => {
         const targetId = Number(likeBtn.dataset.postId);
         const targetType = likeBtn.dataset.targetType;
@@ -69,15 +78,21 @@ function createPostCard(post) {
                 //was liked now unlike UI state
                 likeBtn.classList.remove('full');//sets the empty heart
                 likeBtn.dataset.isLiked = 'false';
+                const currentCount = parseInt(likesCount.innerText || '0');
+                likesCount.innerText = currentCount > 1 ? currentCount - 1 : '';
             } else if (result.message === 'Liked!') {
                 //was unliked now like UI state
                 likeBtn.classList.add('full');//sets the full heart
                 likeBtn.dataset.isLiked = 'true'
+                const currentCount = parseInt(likesCount.innerText || '0');
+                likesCount.innerText = currentCount + 1;
             }
 
             else if (result.error) {
                 console.error('Error:', result.error);
             }
+            //update likes counter on click
+            injectLikeCount(targetId, likesCount);
         } catch (error) {
             console.error('Network error:', error);
         }

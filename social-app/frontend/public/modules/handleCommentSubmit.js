@@ -53,10 +53,6 @@ async function handleCommentSubmit({ postId, commentContent, fileInput, statusMs
         const comCount = document.querySelector(`[data-post-id="${postId}"] .counterDisplay`);
         injectCommentCount(postId, comCount);
 
-        console.log('fileInput.files[0]', fileInput.files[0]);
-
-
-
     } catch (error) {
         statusMsg.innerText = 'Network Error';
         statusMsg.hidden = false;

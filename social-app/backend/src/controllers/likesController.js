@@ -65,11 +65,35 @@ async function deleteLike(req, res) {
     }
 };
 
+//getLikesCount
+
+async function getLikesCount(req, res) {
+    const { targetId } = req.query;
+
+    if (!targetId || isNaN(Number(targetId))) {
+        return res.status(400).json({ error: 'Valid postId required' });
+    }
+
+    try {
+        const likesCount = await prisma.like.count({
+            where: {
+                postId: Number(targetId)
+            }
+        });
+
+        res.json({ count: likesCount });
+
+    } catch (error) {
+        console.error('Error fetching likes count', error);
+        res.status(500).json({ error: 'Failed to fetch likes count' });
+    }
+}
+
+
 
 // async function getLikesByPostId(req,res){}
-
 //async function getLikesByCommentId(req,res){}
 
 
 
-module.exports = { createLike, deleteLike/*, getLikesByPostId, getLikesByCommentId*/ }
+module.exports = { createLike, deleteLike, getLikesCount /*, getLikesByPostId, getLikesByCommentId*/ }

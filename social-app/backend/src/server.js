@@ -26,6 +26,9 @@ const corsOptions = {
 //import post route
 const postRoutes = require('./routes/postRoutes');
 
+//likes routes
+const likesRoutes = require('./routes/likesRoutes');
+
 //followRoutes
 const followRoutes = require('./routes/followRoutes');
 
@@ -35,8 +38,6 @@ const userRoutes = require('./routes/userRoutes');
 //commentRoutes
 const commentRoutes = require('./routes/commentRoutes');
 
-//likes routes
-const likesRoutes = require('./routes/likesRoutes');
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
