@@ -87,7 +87,7 @@ async function commentsModal(commentBtn, post) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             handleCommentSubmit({
-                postId,
+                post,
                 commentContent: form.querySelector('#commentContent'),
                 fileInput: form.querySelector(`#fileInput-${form.id}`),
                 statusMsg: form.querySelector('#statusMsg'),
