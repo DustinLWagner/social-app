@@ -1,1 +1,1 @@
-I am building a social media app with chat messaging as a project to build out my knowledge base utilizing Javascript, Prisma, and RESTful API's with Node.js and Express. 
+Developing a social media application with chat messaging as a personal project to deepen my understanding of JavaScript, Node.js, Express, Prisma, and RESTful API design.
