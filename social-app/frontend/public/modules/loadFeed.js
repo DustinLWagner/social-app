@@ -1,3 +1,4 @@
+import { commentsModal } from "/modules/commentsModal.js";
 import { createPostCard } from "/modules/createPostCard.js";
 
 async function loadFeed(userId = null) {
@@ -24,6 +25,9 @@ async function loadFeed(userId = null) {
         for (const post of posts) {
             //Create the card 
             let card = createPostCard(post);
+            // attach comment modal listener, passing post object
+            commentsModal(card.querySelector('.commentBtn'), post);
+
             //append postCard from createPostCard
             feedContainer.append(card);
 

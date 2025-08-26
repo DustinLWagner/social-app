@@ -2,24 +2,19 @@ import { getComments } from "/modules/getComments.js";
 import { createCommentCard } from "/modules/createCommentCard.js";
 import { createCommentForm } from "/modules/createCommentForm.js"
 import { handleCommentSubmit } from "/modules/handleCommentSubmit.js";
+import { createPostCard } from "/modules/createPostCard.js";
 
-
-async function commentsModal(commentBtn, postId) {
+//call modal
+async function commentsModal(commentBtn, post) {
     const commentsContainer = document.getElementById('commentsContainer');
     const viewComments = document.getElementById('viewComments');
 
     //commentsContainer comment button logic
     commentBtn.addEventListener('click', async (e) => {
 
+
         //get comments 
-        const comments = await getComments(postId);
-        //clear to prevent duplicates
-        viewComments.innerHTML = '';
-        //insert create comment form into modal
-        const form = createCommentForm();
-        viewComments.append(form);
-        const fileInput = form.querySelector(`#fileInput-${form.id}`);
-        const imgPreview = form.querySelector('#imgPreview');
+        const comments = await getComments(post.id);
 
         //if no comments append message
         if (!comments.length) {
@@ -27,6 +22,34 @@ async function commentsModal(commentBtn, postId) {
             noCom.innerText = 'No Comments';
             viewComments.append(noCom);
         }
+
+
+
+        //clear modal
+        viewComments.innerHTML = '';
+
+        //append post card built like card in feed
+        let postPrev = createPostCard(post);
+
+        //hide buttons on post preview
+        let buttons = postPrev.querySelector('.cardBttmDiv');
+
+        buttons.style.display = 'none';
+
+
+        //append postCard from createPostCard
+        viewComments.append(postPrev);
+
+
+
+
+        //insert create comment form into modal
+        const form = createCommentForm();
+        viewComments.append(form);
+        const fileInput = form.querySelector(`#fileInput-${form.id}`);
+        const imgPreview = form.querySelector('#imgPreview');
+
+
 
         //insert into modal
         //Loop through comments and create cards
