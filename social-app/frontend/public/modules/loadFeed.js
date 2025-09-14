@@ -26,6 +26,7 @@ async function loadFeed(userId = null) {
             let card = createPostCard(post);
             //append postCard from createPostCard
             feedContainer.append(card);
+
         };
 
     } catch (error) {

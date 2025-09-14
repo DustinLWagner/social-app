@@ -26,23 +26,24 @@ const corsOptions = {
 //import post route
 const postRoutes = require('./routes/postRoutes');
 
+//likes routes
+const likesRoutes = require('./routes/likesRoutes');
+
 //followRoutes
 const followRoutes = require('./routes/followRoutes');
 
 //userRoutes
 const userRoutes = require('./routes/userRoutes');
 
+//commentRoutes
+const commentRoutes = require('./routes/commentRoutes');
+
+
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
 //parse incoming request from the client with JSON, attach the parsed data to req.body
 app.use(express.json());
-
-// for routes from /api/auth
-app.use('/api/auth', authRoutes);
-
-//create post route
-app.use('/api/posts', postRoutes);
 
 //for protected (auth required)
 app.use(
@@ -52,27 +53,40 @@ app.use(
         next();
     }, express.static(path.join(__dirname, '../../frontend/protected')),
 );
-//for public (no auth required)
-app.use(
-    express.static(path.join(__dirname, '../../frontend/public'))
-);
+
+// for routes from /api/auth
+app.use('/api/auth', authRoutes);
+
+//create post route
+app.use('/api/posts', postRoutes);
+
 //follow routes
 app.use('/api', followRoutes);
 
 //userRoutes
 app.use('/api/users', userRoutes);
 
-//middlewareJWT
-function handler(req, res) {
-    res.status(200).json({ message: 'Access Granted', userId: req.userId })
-};
+//commentRoutes
+app.use('/api/comments', commentRoutes);
 
-app.get('/api/auth/profile', verifyJWT, handler);
+//likesRoutes
+app.use('/api/likes', likesRoutes);
 
+// Auth check endpoint to verify JWT and return user info
+app.get('/api/auth/profile', verifyJWT, (req, res) => {
+    res.status(200).json({ message: 'Access Granted', userId: req.userId });
+});
+
+//for public (no auth required)
+app.use(
+    express.static(path.join(__dirname, '../../frontend/public'))
+);
+
+//avoid 404 on favicon.ico
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 const PORT = process.env.PORT || 3000;
 console.log('Starting server...');
-
 
 //log port
 app.listen(PORT, () => {

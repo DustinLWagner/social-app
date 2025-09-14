@@ -16,9 +16,9 @@ const { getFeed, getUserFeed } = require('../controllers/feedController');
 // POST api/posts/create - protected with file upload
 router.post('/create', verifyJWT, upload.single('media'), createPost);
 //GET /api/posts/feed - public
-router.get('/feed', getFeed);
+router.get('/feed', verifyJWT, getFeed);
 // GET /api/users/:id/posts
-router.get('/users/:id/posts', getUserFeed);
+router.get('/users/:id/posts', verifyJWT, getUserFeed);
 
 //export the router object
 module.exports = router;

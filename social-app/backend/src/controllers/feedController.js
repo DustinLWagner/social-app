@@ -20,7 +20,26 @@ async function getFeed(req, res) {
             },
 
         });
-        res.status(200).json(posts); //return list of posts
+
+        // Attach likedByUser flag to each post
+        const postsWithLikeInfo = [];
+
+        for (const post of posts) {
+            const liked = await prisma.like.findFirst({
+                where: {
+                    userId: req.userId, // logged-in user
+                    postId: post.id,
+                },
+            });
+
+            postsWithLikeInfo.push({
+                ...post,
+                likedByUser: !!liked,
+            });
+        }
+
+        res.status(200).json(postsWithLikeInfo);
+
     } catch (error) {
         console.error('Error fetching global feed:', error);
         res.status(500).json({ error: 'Failed to fetch feed.' });
@@ -50,9 +69,24 @@ async function getUserFeed(req, res) {
                 // sort by createdAt, newest first
                 { createdAt: 'desc' }
             ],
-
         });
-        res.status(200).json(posts); //return list of posts
+
+        const postsWithLikeInfo = [];
+        // loop through posts finding liked posts
+        for (const post of posts) {
+            const liked = await prisma.like.findFirst({
+                where: {
+                    userId: req.userId,
+                    postId: post.id,
+                }
+            });
+            postsWithLikeInfo.push({
+                ...post,
+                likedByUser: !!liked,
+            });
+        }
+
+        res.status(200).json(postsWithLikeInfo); //return posts and likes info
     } catch (error) {
         console.error('Error fetching global feed:', error);
         res.status(500).json({ error: 'Failed to fetch feed.' });

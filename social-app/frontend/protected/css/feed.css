@@ -41,7 +41,7 @@ body.withSidebar {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    max-width: 800px;
+    max-width: 50%;
     margin: 0 auto;
     overflow-y: auto;
 }
@@ -55,7 +55,8 @@ main {
 }
 
 h1,
-h2 {
+h2,
+h3 {
     color: #08605F;
     text-align: center;
     margin-bottom: 1rem;
@@ -75,7 +76,6 @@ h2 {
 
 .formInput,
 textarea {
-    width: 100%;
     padding: 0.5rem;
     border: 1px solid #444;
     border-radius: 8px;
@@ -100,7 +100,9 @@ textarea:focus {
 #pubFeedBtn,
 #submitPost,
 #logoutButton,
-#openPostModal {
+#openPostModal,
+#notificationBtn,
+#submitComment {
     width: 230px;
     padding: 0.6rem;
     margin-top: 0.5rem;
@@ -111,6 +113,10 @@ textarea:focus {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+#submitComment {
+    margin-bottom: 0.6rem;
 }
 
 #buttonsDiv {
@@ -124,12 +130,16 @@ textarea:focus {
     min-width: 100px;
 }
 
+.customFileUpload:hover,
 .formButton:hover,
 #pubFeedBtn:hover,
 #submitPost:hover,
 #logoutButton:hover,
 #postMedia:hover,
-#openPostModal:hover {
+#openPostModal:hover,
+#submitComment:hover,
+#clearImg:hover,
+#notificationBtn:hover {
     background-color: #023047;
 }
 
@@ -172,7 +182,7 @@ a:hover {
     font-weight: bold;
 }
 
-/* Feed */
+/* Feed and comments*/
 #feedContainer {
     margin-top: 2rem;
     display: flex;
@@ -180,15 +190,19 @@ a:hover {
     gap: 1.5rem;
 }
 
-.postCard img {
-    width: fit-content;
-    max-width: 400px;
+.postCard img,
+.commentCard img {
+    max-width: calc(100vw / 2.5);
+    width: 100%;
     align-self: center;
-    margin-top: 0.5rem;
+    margin: 0.5rem 0 0.5rem 0;
     border-radius: 8px;
+    display: block;
 }
 
-.postCard {
+#viewComments,
+.postCard,
+.commentCard {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,19 +212,84 @@ a:hover {
     padding: 1rem;
     color: #e0e0e0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    min-width: 402px;
-    max-width: 600px;
+    min-width: 25rem;
+    max-width: 40rem;
     align-self: center;
 }
 
-.postCard h3 {
+.commentCard {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.postCard h3,
+.commentCard h3 {
     margin-bottom: 0.5rem;
     color: #077a78;
 }
 
-.postCard p {
+.postCard p,
+.commentCard p {
     font-size: 0.95rem;
     color: #d0d0d0;
+}
+
+/* like, share, comment buttons on postCard*/
+.cardBttmDiv {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 240px;
+    margin: 0 auto;
+    padding-top: 1rem;
+
+}
+
+.cardBtns {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+}
+
+.cardBtns.likeBtn {
+    background-image: url(/icons/likeHeartEmpty.webp);
+}
+
+.cardBtns.likeBtn.full {
+    background-image: url(/icons/likeHeartFull.webp);
+}
+
+.cardBtns.shareBtn {
+    background-image: url(/icons/shareBtn.webp);
+}
+
+.cardBtns.commentBtn {
+    background-image: url(/icons/commentBtn.webp);
+}
+
+.counterDisplay {
+    margin-left: 2.5em;
+    text-align: center;
+    color: #a0a0a0;
+    cursor: default;
+
+}
+
+.likeCounterDisplay {
+    margin-left: 2.5em;
+    text-align: center;
+    color: #a0a0a0;
+    cursor: default;
+
 }
 
 /* Responsive adjustments */
@@ -243,29 +322,45 @@ a:hover {
     display: none;
     justify-content: center;
     align-items: center;
-    opacity: 100;
+    opacity: 1;
+}
+
+#commentsContainer {
+    background-color: #35363fe8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
 }
 
 #modal {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     background-color: #35363f;
     border: 1px solid #444;
     height: max-content;
+    max-height: 90vh;
     width: 500px;
     max-width: 100%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     border-radius: 12px;
     min-width: 300px;
-
+    overflow-y: auto;
 }
 
-#createPostForm {
+#createPostForm,
+.commentForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 0.2rem;
 }
 
 #imgPreview {
