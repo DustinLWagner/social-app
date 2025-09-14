@@ -116,7 +116,11 @@ a:hover {
     gap: 1.5rem;
 }
 
+
 .postCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #35363f;
     border: 1px solid #444;
     border-radius: 12px;
@@ -124,6 +128,7 @@ a:hover {
     color: #e0e0e0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     min-width: 402px;
+    max-width: 600px;
     align-self: center;
 }
 
@@ -138,8 +143,9 @@ a:hover {
 }
 
 .postCard img {
+    width: fit-content;
+    align-self: center;
     margin-top: 0.5rem;
-    max-width: 100%;
     border-radius: 8px;
 }
 

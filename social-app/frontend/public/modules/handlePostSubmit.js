@@ -36,6 +36,11 @@ async function handlePostSubmit(createPostForm, postContentInput, postMediaInput
             feedContainer.prepend(card);
             window.scrollTo({ top: 0, behavior: 'smooth' });
             createPostForm.reset();
+            //close post modal
+            modalContainer.style.display = 'none';
+            //clear input and image selection
+            postMediaInput.value = ''; //reset input
+            imgPreview.src = ''; //clear image preview
         } else {
             //on fail unhide <p id="postFailMsg">
             postFailMsg.innerText = 'Failed to create post.';
