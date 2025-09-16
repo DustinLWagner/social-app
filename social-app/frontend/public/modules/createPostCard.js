@@ -117,7 +117,7 @@ function createPostCard(post) {
     injectCommentCount(post.id, comCount);
     commentBtn.append(comCount);
 
-    commentsModal(commentBtn, post.id);
+    commentsModal(commentBtn, post);
 
     //create formatted timestamp
     const cardTime = document.createElement('sub')

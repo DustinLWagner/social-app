@@ -196,6 +196,10 @@ a:hover {
     background-image: url(/icons/likeHeartEmpty.webp);
 }
 
+.cardBtns.likeBtn.full {
+    background-image: url(/icons/likeHeartFull.webp);
+}
+
 .cardBtns.shareBtn {
     background-image: url(/icons/shareBtn.webp);
 }
@@ -208,6 +212,14 @@ a:hover {
     margin-left: 2.5em;
     text-align: center;
     color: #a0a0a0;
+
+}
+
+.likeCounterDisplay {
+    margin-left: 2.5em;
+    text-align: center;
+    color: #a0a0a0;
+    cursor: default;
 
 }
 

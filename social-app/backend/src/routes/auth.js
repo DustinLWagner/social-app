@@ -12,7 +12,7 @@ const { PrismaClient } = require('../../generated/prisma');
 const prisma = new PrismaClient();
 
 // "When a POST request comes in to /register, run the register function to handle it."
-//This is relative to where this router is mounted in your server.js
+//This is relative to where this router is mounted in your app.js
 //Routes
 router.post('/register', register);
 router.post('/login', login);
