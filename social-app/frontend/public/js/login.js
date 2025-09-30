@@ -1,4 +1,5 @@
 const FEED_PAGE = '../protected/feed.html';
+import API_BASE from './config.js';
 
 //grab login form
 document.getElementById('loginForm').addEventListener('submit',
@@ -10,8 +11,8 @@ document.getElementById('loginForm').addEventListener('submit',
         const userSubmitPassword = document.querySelector('input[name=password]').value;
 
         //fetch call
-        const url = 'http://localhost:3000/api/auth/login'
-        const creds = { email: userSubmitEmail, password: userSubmitPassword }
+        const url = `${API_BASE}/auth/login`;
+        const creds = { email: userSubmitEmail, password: userSubmitPassword };
         const jsonCreds = JSON.stringify(creds);
 
         fetch(url, {

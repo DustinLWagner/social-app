@@ -5,6 +5,7 @@ const homeBtn = document.getElementById('homeBtn');
 const loginSection = document.getElementById('loginSection');
 const reg_link = document.getElementById('reg_link');
 const openPostModal = document.getElementById('openPostModal');
+import API_BASE from '../js/config.js';
 
 //asyn function for checking if logged in on public pages *Does Not Redirect*
 async function checkIfLoggedIn() {
@@ -22,7 +23,7 @@ async function checkIfLoggedIn() {
             return null;
         }
 
-        const response = await fetch('http://localhost:3000/api/auth/profile', {
+        const response = await fetch(`${API_BASE}/auth/profile`, {
             method: 'GET',
             headers: { Authorization: 'Bearer ' + authToken }
         });

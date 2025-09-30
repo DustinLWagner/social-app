@@ -1,3 +1,4 @@
+import API_BASE from '../../public/js/config.js';
 const LOGIN_PAGE = '/pages/index.html';
 const FEED_PAGE = '/protected/feed.html';
 
@@ -16,7 +17,7 @@ async function checkAuth() {
         return null;
     }
     try {
-        const response = await fetch('http://localhost:3000/api/auth/profile', {
+        const response = await fetch(`${API_BASE}/auth/profile`, {
             method: 'GET',
             headers: { Authorization: 'Bearer ' + authToken }
         })

@@ -1,3 +1,5 @@
+import API_BASE from './config.js';
+
 document.getElementById('registerForm').addEventListener('submit', function register(event) {
 
     //prevent page reloading after submit event
@@ -8,7 +10,7 @@ document.getElementById('registerForm').addEventListener('submit', function regi
     const userSubmitPassword = document.querySelector('input[name=password]').value;
 
     //fetch call
-    const url = 'http://localhost:3000/api/auth/register'
+    const url = `${API_BASE}/auth/register`
     const creds = { username: userSubmitUsername, email: userSubmitEmail, password: userSubmitPassword }
     const jsonCreds = JSON.stringify(creds);
 
