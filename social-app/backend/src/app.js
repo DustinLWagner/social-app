@@ -18,9 +18,10 @@ const verifyJWT = require('./middleware/auth');
 
 //restrict cors to my frontend addy only
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    origin: 'http://127.0.0.1:5500', // replace with your server IP or domain
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true //cookies/JWT
 };
 
 //import post route
@@ -88,7 +89,7 @@ app.get('/favicon.ico', (req, res) => res.status(204).end());
 const PORT = process.env.PORT || 3000;
 console.log('Starting server...');
 
-//log port
-app.listen(PORT, () => {
+// 0.0.0.0 listen on all network interfaces
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on Port ${PORT}`);
 });
