@@ -1,4 +1,4 @@
-import API_BASE from '../../public/js/config.js';
+import API_BASE from '/js/config.js';
 const LOGIN_PAGE = '/pages/index.html';
 const FEED_PAGE = '/protected/feed.html';
 
