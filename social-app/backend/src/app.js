@@ -18,7 +18,7 @@ const verifyJWT = require('./middleware/auth');
 
 //restrict cors to my frontend addy only
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500', // replace with your server IP or domain
+    origin: process.env.CORS_ORIGIN,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true //cookies/JWT
