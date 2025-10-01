@@ -1,7 +1,7 @@
 import { createCommentCard } from "/modules/createCommentCard.js";
 import { injectCommentCount } from "/modules/injectCommentCount.js";
 
-async function handleCommentSubmit({ postId, commentContent, fileInput, statusMsg, viewComments, imgPreview, form }) {
+async function handleCommentSubmit({ post, commentContent, fileInput, statusMsg, viewComments, imgPreview, form }) {
     statusMsg.hidden = true;
     //get values from comment content
     const content = commentContent.value.trim();
@@ -16,7 +16,7 @@ async function handleCommentSubmit({ postId, commentContent, fileInput, statusMs
     // build formData object
     const commentFormData = new FormData();
     commentFormData.append('content', content);
-    commentFormData.append('postId', postId);
+    commentFormData.append('postId', post.id);
     commentFormData.append('media', media);
 
     // if (media) {
@@ -50,8 +50,8 @@ async function handleCommentSubmit({ postId, commentContent, fileInput, statusMs
 
         form.querySelector('button').disabled = false;
         //update comment counter
-        const comCount = document.querySelector(`[data-post-id="${postId}"] .counterDisplay`);
-        injectCommentCount(postId, comCount);
+        const comCount = document.querySelector(`[data-post-id="${post.id}"] .counterDisplay`);
+        injectCommentCount(post.id, comCount);
 
     } catch (error) {
         statusMsg.innerText = 'Network Error';
