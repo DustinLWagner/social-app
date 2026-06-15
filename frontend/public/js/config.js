@@ -1,3 +1,3 @@
-const API_BASE = 'http://192.xx.xx.xx:3000/api'; // replace with your server IP or domain
-
+// dynamic IP address of the backend server
+const API_BASE = '${window.location.protocol}//${window.location.hostname}:3000/api';
 export default API_BASE;

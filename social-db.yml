@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: social-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - /home/dusty/dev/projects/web/social-app/pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+  backend:
+    image: node:24
+    container_name: social-backend
+    working_dir: /app
+    volumes:
+      - /home/dusty/dev/projects/web/social-app:/app
+    ports:
+     - 3000:3000
+    depends_on:
+      - postgres
+    command: sh -c "cd backend && npm install && node src/app.js"
+    restart: unless-stopped
